@@ -6,9 +6,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 
-import com.asvsdfer.bjirmndf.MainActivity;
 import com.asvsdfer.bjirmndf.R;
-import com.asvsdfer.bjirmndf.api.ApiServiceManager;
 import com.asvsdfer.bjirmndf.api.RetrofitManager;
 import com.asvsdfer.bjirmndf.base.BaseActivity;
 import com.asvsdfer.bjirmndf.util.SharePreferencesUtil;

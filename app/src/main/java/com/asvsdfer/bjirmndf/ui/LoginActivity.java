@@ -8,7 +8,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.asvsdfer.bjirmndf.MainActivity;
 import com.asvsdfer.bjirmndf.R;
 import com.asvsdfer.bjirmndf.api.RetrofitManager;
 import com.asvsdfer.bjirmndf.base.BaseActivity;
