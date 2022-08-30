@@ -2,7 +2,10 @@ package com.asvsdfer.bjirmndf.api;
 
 import com.asvsdfer.bjirmndf.model.BaseModel;
 import com.asvsdfer.bjirmndf.model.ConfigEntity;
+import com.asvsdfer.bjirmndf.model.GoodsModel;
 import com.asvsdfer.bjirmndf.model.LoginModel;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -21,4 +24,10 @@ public interface ApiServiceManager {
 
     @GET("/app/user/sendVerifyCode")
     Observable<BaseModel> sendVerifyCode(@Query("phone") String phone);
+
+    @GET("/app/product/productList")
+    Observable<BaseModel<List<GoodsModel>>> getGoodsList(@Query("mobileType") int mobileType, @Query("phone") String phone);
+
+    @GET("/app/product/productClick")
+    Observable<BaseModel> productClick(@Query("productId") long productId, @Query("phone") String phone);
 }

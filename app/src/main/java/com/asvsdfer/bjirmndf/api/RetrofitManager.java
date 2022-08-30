@@ -47,6 +47,7 @@ public class RetrofitManager {
             @Override
             public void log(String message) {
                 try {
+                    message = message.replaceAll("%(?![0-9a-fA-F]{2})","%25");
                     String text = URLDecoder.decode(message, "utf-8");
                     Log.e("OKHttp-----", text);
                 } catch (UnsupportedEncodingException e) {

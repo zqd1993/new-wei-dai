@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.lihang.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="10dp"
+        app:hl_cornerRadius="10dp"
+        app:hl_startColor="#FFF1DB"
+        app:hl_endColor="#FFDAAB"
+        app:hl_angle="270">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:hl_cornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher" />
+
+                </com.lihang.ShadowLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textColor="#935816"
+                    android:text="乐借钱包" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="#934716"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="300,000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="#B48628"
+                android:textSize="12sp"
+                android:text="申请额度" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/text_yuan_bg"
+                android:text="大牌放心"
+                android:textSize="10sp"
+                android:textColor="#F0AC0A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/text_yuan_bg"
+                android:text="高额低息"
+                android:textSize="10sp"
+                android:textColor="#F0AC0A" />
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/anniu2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="3dp"
+                android:textColor="#B48628"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="低利息" />
+
+        </LinearLayout>
+
+    </com.lihang.ShadowLayout>
+
+</FrameLayout>

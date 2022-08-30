@@ -2,6 +2,7 @@ package com.asvsdfer.bjirmndf.ui;
 
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -14,9 +15,11 @@ import com.asvsdfer.bjirmndf.base.BaseActivity;
 import com.asvsdfer.bjirmndf.base.ObserverManager;
 import com.asvsdfer.bjirmndf.model.BaseModel;
 import com.asvsdfer.bjirmndf.model.ConfigEntity;
+import com.asvsdfer.bjirmndf.model.LoginModel;
 import com.asvsdfer.bjirmndf.ui.adapter.BaseFragmentAdapter;
 import com.asvsdfer.bjirmndf.ui.fragment.MainFragment;
 import com.asvsdfer.bjirmndf.util.SharePreferencesUtil;
+import com.asvsdfer.bjirmndf.util.StaticUtil;
 import com.asvsdfer.bjirmndf.util.StatusBarUtil;
 import com.asvsdfer.bjirmndf.util.ToastUtil;
 import com.flyco.tablayout.CommonTabLayout;
@@ -36,6 +39,7 @@ public class MainActivity extends BaseActivity {
     private ViewPager2 homeViewPager;
     private CommonTabLayout tabLayout;
 
+    private String phone, ip;
     private long exitTime = 0;
     private List<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles = {"首页", "精选", "我的"};
@@ -59,7 +63,7 @@ public class MainActivity extends BaseActivity {
         if (SharePreferencesUtil.getBool("NO_RECORD")) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
-//        getP().login();
+        logins();
         homeViewPager = findViewById(R.id.home_view_pager);
         tabLayout = findViewById(R.id.tab_layout);
         customTabEntities = new ArrayList<>();
@@ -117,5 +121,36 @@ public class MainActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void logins() {
+        phone = SharePreferencesUtil.getString("phone");
+        ip = SharePreferencesUtil.getString("ip");
+        Observable<BaseModel<LoginModel>> observable = RetrofitManager.getRetrofitManager().
+                getApiService().logins(phone, ip);
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(this.bindToLifecycle())
+                .subscribe(new ObserverManager<BaseModel<LoginModel>>() {
+                    @Override
+                    public void onSuccess(BaseModel<LoginModel> model) {
+
+                    }
+
+                    @Override
+                    public void onFail(Throwable throwable) {
+                        Log.e("Throwable", throwable.toString());
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onDisposable(Disposable disposable) {
+                    }
+                });
     }
 }

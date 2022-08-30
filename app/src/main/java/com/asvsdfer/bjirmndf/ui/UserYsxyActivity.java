@@ -1,6 +1,9 @@
 package com.asvsdfer.bjirmndf.ui;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -11,6 +14,8 @@ import com.asvsdfer.bjirmndf.base.BaseActivity;
 import com.asvsdfer.bjirmndf.util.StatusBarUtil;
 
 public class UserYsxyActivity extends BaseActivity {
+
+    private View backImage;
 
     private WebView ysxyView;
 
@@ -29,7 +34,7 @@ public class UserYsxyActivity extends BaseActivity {
 
     @Override
     public void initListener() {
-
+        backImage.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -37,6 +42,7 @@ public class UserYsxyActivity extends BaseActivity {
         StatusBarUtil.setTransparent(this, false);
         ysxyView = findViewById(R.id.ysxy_view);
         TextView tvTitle = findViewById(R.id.title_tv);
+        backImage = findViewById(R.id.back_image);
         bundle = getIntent().getExtras();
         if (bundle.containsKey("tag"))
             tag = bundle.getInt("tag");
@@ -53,5 +59,45 @@ public class UserYsxyActivity extends BaseActivity {
         webSettings.setTextZoom(100);
         ysxyView.setWebViewClient(new WebViewClient());
         ysxyView.loadUrl(url);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                if (ysxyView.canGoBack()) {
+                    ysxyView.goBack();
+                } else {
+                    finish();
+                }
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (ysxyView != null) ysxyView.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ysxyView != null) ysxyView.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (ysxyView != null) {
+            ViewGroup parent = (ViewGroup) ysxyView.getParent();
+            if (parent != null) {
+                parent.removeView(ysxyView);
+            }
+            ysxyView.removeAllViews();
+            ysxyView.destroy();
+        }
     }
 }
