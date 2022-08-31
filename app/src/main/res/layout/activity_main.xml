@@ -12,17 +12,17 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:orientation="vertical"
         android:background="@color/white">
 
         <com.flyco.tablayout.CommonTabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_height="60dp"
-            app:tl_iconGravity="LEFT"
+            app:tl_iconGravity="TOP"
             app:tl_iconHeight="27dp"
             app:tl_iconMargin="7dp"
             app:tl_iconVisible="true"
@@ -32,6 +32,6 @@
             app:tl_textsize="14sp"
             app:tl_indicator_height="0dp"/>
 
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

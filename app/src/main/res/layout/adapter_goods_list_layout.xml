@@ -34,6 +34,7 @@
                     app:hl_cornerRadius="10dp">
 
                     <ImageView
+                        android:id="@+id/goods_pic_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -42,6 +43,7 @@
                 </com.lihang.ShadowLayout>
 
                 <TextView
+                    android:id="@+id/goods_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
@@ -54,6 +56,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/goods_amount_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -71,6 +74,7 @@
                 android:text="申请额度" />
 
             <TextView
+                android:id="@+id/zhouqi_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -80,10 +84,11 @@
                 android:paddingEnd="10dp"
                 android:background="@drawable/text_yuan_bg"
                 android:text="大牌放心"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#F0AC0A" />
 
             <TextView
+                android:id="@+id/people_number_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -93,7 +98,7 @@
                 android:paddingEnd="10dp"
                 android:background="@drawable/text_yuan_bg"
                 android:text="高额低息"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#F0AC0A" />
 
             <View
@@ -103,6 +108,7 @@
                 android:background="@drawable/anniu2" />
 
             <TextView
+                android:id="@+id/info_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -116,5 +122,10 @@
         </LinearLayout>
 
     </com.lihang.ShadowLayout>
+
+    <View
+        android:id="@+id/parent_sl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
