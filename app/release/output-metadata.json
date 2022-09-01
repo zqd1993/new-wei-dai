@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fjsdkqwj.pfdioewjnsd",
+  "applicationId": "com.dqlsdjd.fdhqwen",
   "variantName": "release",
   "elements": [
     {
@@ -12,7 +12,7 @@
       "filters": [],
       "versionCode": 102,
       "versionName": "1.0.2",
-      "outputFile": "suijiesuihuan_v1.0.2_build_20220831142705.apk"
+      "outputFile": "suijiesuihuan_v1.0.2_build_20220901141542.apk"
     }
   ]
 }

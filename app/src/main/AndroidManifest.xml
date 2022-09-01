@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.fjsdkqwj.pfdioewjnsd">
+    package="com.dqlsdjdhwmg.fdhqwenhwmg">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
-        android:name="com.fjsdkqwj.pfdioewjnsd.App"
+        android:name="com.dqlsdjdhwmg.fdhqwenhwmg.MangGuoHwApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         android:requestLegacyExternalStorage="true"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.WelcomeActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.WelcomeMangGuoHwActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,34 +31,35 @@
         </activity>
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.MainActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.CancellationMangGuoHwActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.UserYsxyActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.MainMangGuoHwActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.LoginActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.AppInfoMangGuoHwActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.GoodsDetailsActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.UserYsxyMangGuoHwActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.AppInfoActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.LoginMangGuoHwActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.CancellationActivity"
+            android:name="com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwui.GoodsDetailsMangGuoHwActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

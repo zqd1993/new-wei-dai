@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-obfuscationdictionary bt-proguard.txt
+-classobfuscationdictionary bt-proguard.txt
+-packageobfuscationdictionary bt-proguard.txt
+
+# Bean类不能混淆
+-keep public class com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwmodel.**{*;}
+
+-keep public class com.dqlsdjdhwmg.fdhqwenhwmg.mangguohwutil.MangGuoHwSharePreferencesUtils
