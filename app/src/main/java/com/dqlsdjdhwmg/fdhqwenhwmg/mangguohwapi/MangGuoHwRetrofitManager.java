@@ -20,7 +20,7 @@ public class MangGuoHwRetrofitManager {
 
     public static final String ZCXY = "https://gnxys.pycxwl.cn/profile/hwmgdk/zcxy.html";
     public static final String YSXY = "https://gnxys.pycxwl.cn/profile/hwmgdk/ysxy.html";
-    public static final String API_BASE_URL = "http://43.249.30.98:7733/";
+    public static final String API_BASE_URL = "http://106.75.64.111:7707/";
 
     private volatile static MangGuoHwRetrofitManager mangGuoHwRetrofitManager;
     private Retrofit retrofit;
