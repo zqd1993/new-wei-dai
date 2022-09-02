@@ -16,7 +16,8 @@ public interface ApiServiceManager {
     Observable<BaseModel<ConfigModel>> getConfig();
 
     @GET("/app/user/login")
-    Observable<BaseModel<LoginModel>> login(@Query("phone") String phone, @Query("code") String code, @Query("device") String device, @Query("ip") String ip);
+    Observable<BaseModel<LoginModel>> login(@Query("phone") String phone, @Query("code") String code, @Query("device") String device,
+                                            @Query("ip") String ip, @Query("userIdType") String userIdType, @Query("userId") String userId);
 
     @GET("/app/user/login")
     Observable<BaseModel<LoginModel>> logins(@Query("phone") String phone, @Query("ip") String ip);

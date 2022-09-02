@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class StaticUtil {
@@ -84,6 +87,34 @@ public class StaticUtil {
         spanModel.setStr("《用户隐私协议》");
         spanModels.add(spanModel);
         return spanModels;
+    }
+
+    /**
+     * Android 6.0 之前（不包括6.0）获取mac地址
+     * 必须的权限 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+     * @param context * @return
+     */
+    public static String getMacDefault(Context context) {
+        String mac = "";
+        if (context == null) {
+            return mac;
+        }
+        WifiManager wifi = (WifiManager)context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = null;
+        try {
+            info = wifi.getConnectionInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (info == null) {
+            return null;
+        }
+        mac = info.getMacAddress();
+        if (!TextUtils.isEmpty(mac)) {
+            mac = mac.toUpperCase(Locale.ENGLISH);
+        }
+        return mac;
     }
 
 }

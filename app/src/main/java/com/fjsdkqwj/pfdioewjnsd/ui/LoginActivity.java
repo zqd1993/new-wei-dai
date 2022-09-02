@@ -1,6 +1,9 @@
 package com.fjsdkqwj.pfdioewjnsd.ui;
 
+import android.Manifest;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.fjsdkqwj.pfdioewjnsd.App;
 import com.fjsdkqwj.pfdioewjnsd.R;
 import com.fjsdkqwj.pfdioewjnsd.api.RetrofitManager;
 import com.fjsdkqwj.pfdioewjnsd.base.BaseActivity;
@@ -16,12 +22,15 @@ import com.fjsdkqwj.pfdioewjnsd.base.ObserverManager;
 import com.fjsdkqwj.pfdioewjnsd.model.BaseModel;
 import com.fjsdkqwj.pfdioewjnsd.model.ConfigModel;
 import com.fjsdkqwj.pfdioewjnsd.model.LoginModel;
+import com.fjsdkqwj.pfdioewjnsd.oaid.DevicesIDsHelper;
 import com.fjsdkqwj.pfdioewjnsd.util.ClickTextView;
 import com.fjsdkqwj.pfdioewjnsd.util.CountDownTimerUtils;
 import com.fjsdkqwj.pfdioewjnsd.util.SharePreferencesUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.StaticUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.StatusBarUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.ToastUtil;
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.victor.loading.rotate.RotateLoading;
 
 import org.json.JSONObject;
@@ -36,8 +45,11 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppIdsUpdater{
+
+    protected static final int RC_PERM = 123;
 
     private EditText mobileEt;
     private EditText verificationEt;
@@ -50,9 +62,10 @@ public class LoginActivity extends BaseActivity {
     public View verificationLl;
     private View head_sl;
 
-    private String mobileStr, verificationStr, ip;
+    private String mobileStr, verificationStr, ip, oaidStr;
     private boolean isNeedVerification;
     private Bundle bundle;
+    private DevicesIDsHelper mDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -113,6 +126,15 @@ public class LoginActivity extends BaseActivity {
                 StaticUtil.startActivity(LoginActivity.this, UserYsxyActivity.class, bundle);
             }
         }, "#ffffff");
+    }
+
+    /**
+     * 获取设备当前 OAID
+     *
+     */
+    public void getOAID() {
+        mDevicesIDsHelper = new DevicesIDsHelper(this);
+        mDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -183,6 +205,12 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getOAID();
+    }
+
     private void getConfig() {
         Observable<BaseModel<ConfigModel>> observable = RetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -222,7 +250,7 @@ public class LoginActivity extends BaseActivity {
 
     private void login(String mobileStr, String verificationStr) {
         Observable<BaseModel<LoginModel>> observable = RetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip);
+                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -295,4 +323,20 @@ public class LoginActivity extends BaseActivity {
                     }
                 });
     }
+
+    @Override
+    public void OnIdsAvalid(@NonNull String ids, boolean support) {
+        if (TextUtils.isEmpty(ids)){
+            oaidStr = "";
+        } else {
+            int length = ids.length();
+            if (length < 64){
+                for (int i = 0; i < 64 - length; i++){
+                    ids = ids + "0";
+                }
+            }
+            oaidStr = ids;
+        }
+    }
+
 }
