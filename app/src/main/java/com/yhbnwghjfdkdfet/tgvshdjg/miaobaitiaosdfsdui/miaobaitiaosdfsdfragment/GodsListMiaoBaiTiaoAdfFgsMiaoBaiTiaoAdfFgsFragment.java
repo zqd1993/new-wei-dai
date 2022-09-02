@@ -151,9 +151,7 @@ public class GodsListMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsFragment extends BaseMiao
         if (goodsMiaoBaiTiaoAdfFgsListAdapter == null){
             goodsMiaoBaiTiaoAdfFgsListAdapter = new GoodsMiaoBaiTiaoAdfFgsListAdapter(R.layout.adapter_goods_list_layout_miao_bai_tiao_sdf, mData);
             goodsMiaoBaiTiaoAdfFgsListAdapter.setHasStableIds(true);
-            goodsMiaoBaiTiaoAdfFgsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                goodsMiaoBaiTiaoAdfFgsListAdapter.setItemClickListener(item -> productClick(item));
-            });
+            goodsMiaoBaiTiaoAdfFgsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
             goodsList.setLayoutManager(new LinearLayoutManager(getActivity()));
             goodsList.setAdapter(goodsMiaoBaiTiaoAdfFgsListAdapter);
