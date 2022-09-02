@@ -24,6 +24,6 @@
 -packageobfuscationdictionary bt-proguard.txt
 
 # Bean类不能混淆
--keep public class com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdmodel.**{*;}
+-keep public class com.xbk1jk.zldkbk.zhulihuavrsdtrmodel.**{*;}
 
--keep public class com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdutil.SharePreferencesMiaoBaiTiaoAdfFgsUtil
+-keep public class com.xbk1jk.zldkbk.zhulihuavrsdtrutil.SharePreferencesZhuLiDaiKuanHuadewgUtil
