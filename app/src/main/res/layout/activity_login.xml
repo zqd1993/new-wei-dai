@@ -173,7 +173,7 @@
                 android:layout_height="@dimen/dp_30"
                 android:button="@drawable/login_checkbox_bg" />
 
-            <com.fjsdkqwj.pfdioewjnsd.util.ClickTextView
+            <com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuautil.ClickTextViewNcOpGeiNiHua
                 android:id="@+id/login_remind_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
