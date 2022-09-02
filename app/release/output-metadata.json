@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.yaman.yongqb",
+  "applicationId": "com.sdldsjqwbaszbdskdf.dfpd",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 20220902,
-      "versionName": "1.1.1",
-      "outputFile": "suijiesuihuan_v1.1.1_build_20220902144138.apk"
+      "versionCode": 100,
+      "versionName": "1.0.0",
+      "outputFile": "suijiesuihuan_v1.0.0_build_20220902175149.apk"
     }
   ]
 }

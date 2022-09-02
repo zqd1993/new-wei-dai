@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yamansdjfernt.yongqbdrgrth">
+    package="com.sdldsjqwbaszbdskdf.dfpddfgert">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name="com.yamansdjfernt.yongqbdrgrth.RongjieSfFgdfApp"
+        android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.WeiFenQiadsfSsdApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfWelcomeRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.RWeiFenQiadsfSsdWelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +32,7 @@
         </activity>
 
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfMainRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.WeiFenQiadsfSsdMainWeiFenQiadsfSsdActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
@@ -47,27 +47,27 @@
         </provider>
 
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfUserYsxyRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.WeiFenQiadsfSsdUserYsxyActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfAppInfoRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.WeiFenQiadsfSsdAppInfoActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfLoginRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.WeiFenQiadsfSsdLoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfGoodsDetailsRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.WeiFenQiadsfSsdGoodsDetailsActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretui.RongjieSfFgdfCancellationRongjieSfFgdfActivity"
+            android:name="com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteui.WeiFenQiadsfSsdCancellationActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
