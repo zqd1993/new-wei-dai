@@ -151,9 +151,7 @@ public class GodsListWeiFenQiadsfSsdFragment extends BaseRongjieSfFgdfFragment {
         if (weiFenQiadsfSsdGoodsListAdapter == null){
             weiFenQiadsfSsdGoodsListAdapter = new WeiFenQiadsfSsdGoodsListAdapter(R.layout.adapter_goods_list_layout_wei_fen_qi_dfger_vjkrt, mData);
             weiFenQiadsfSsdGoodsListAdapter.setHasStableIds(true);
-            weiFenQiadsfSsdGoodsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                weiFenQiadsfSsdGoodsListAdapter.setItemClickListener(item -> productClick(item));
-            });
+            weiFenQiadsfSsdGoodsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
             goodsList.setLayoutManager(new LinearLayoutManager(getActivity()));
             goodsList.setAdapter(weiFenQiadsfSsdGoodsListAdapter);
