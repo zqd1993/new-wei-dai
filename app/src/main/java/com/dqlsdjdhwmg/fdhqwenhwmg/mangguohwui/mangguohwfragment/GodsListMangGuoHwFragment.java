@@ -151,9 +151,7 @@ public class GodsListMangGuoHwFragment extends BaseMangGuoHwFragment {
         if (mangGuoHwGoodsListAdapter == null){
             mangGuoHwGoodsListAdapter = new MangGuoHwGoodsListAdapter(R.layout.adapter_goods_list_layout_mang_guo_hw, mData);
             mangGuoHwGoodsListAdapter.setHasStableIds(true);
-            mangGuoHwGoodsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                mangGuoHwGoodsListAdapter.setItemClickListener(item -> productClick(item));
-            });
+            mangGuoHwGoodsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
             goodsList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             goodsList.setAdapter(mangGuoHwGoodsListAdapter);
