@@ -151,9 +151,7 @@ public class NcOpGeiNiHuaGodsListFragmentNcOpGeiNiHua extends NcOpGeiNiHuaBaseFr
         if (ncOpGeiNiHuaGoodsListAdapter == null){
             ncOpGeiNiHuaGoodsListAdapter = new NcOpGeiNiHuaGoodsListAdapter(R.layout.adapter_goods_list_layout, mData);
             ncOpGeiNiHuaGoodsListAdapter.setHasStableIds(true);
-            ncOpGeiNiHuaGoodsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                ncOpGeiNiHuaGoodsListAdapter.setItemClickListener(item -> productClick(item));
-            });
+            ncOpGeiNiHuaGoodsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
             goodsList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             goodsList.setAdapter(ncOpGeiNiHuaGoodsListAdapter);
