@@ -29,8 +29,6 @@ import com.fjsdkqwj.pfdioewjnsd.util.SharePreferencesUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.StaticUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.StatusBarUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.ToastUtil;
-import com.github.gzuliyujiang.oaid.DeviceID;
-import com.github.gzuliyujiang.oaid.IGetter;
 import com.victor.loading.rotate.RotateLoading;
 
 import org.json.JSONObject;

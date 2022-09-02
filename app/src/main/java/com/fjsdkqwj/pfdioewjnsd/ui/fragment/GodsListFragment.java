@@ -151,9 +151,7 @@ public class GodsListFragment extends BaseFragment {
         if (goodsListAdapter == null){
             goodsListAdapter = new GoodsListAdapter(R.layout.adapter_goods_list_layout, mData);
             goodsListAdapter.setHasStableIds(true);
-            goodsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                goodsListAdapter.setItemClickListener(item -> productClick(item));
-            });
+            goodsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
             goodsList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             goodsList.setAdapter(goodsListAdapter);
