@@ -250,7 +250,7 @@ public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgs
 
     private void login(String mobileStr, String verificationStr) {
         Observable<ZhuLiDaiKuanHuadewgBaseModel<LoginZhuLiDaiKuanHuadewgModel>> observable = ZhuLiDaiKuanHuadewgRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
