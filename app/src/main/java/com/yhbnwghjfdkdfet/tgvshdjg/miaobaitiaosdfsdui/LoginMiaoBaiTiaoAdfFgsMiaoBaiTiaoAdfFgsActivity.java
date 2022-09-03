@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
+import com.yhbnwghjfdkdfet.tgvshdjg.MiaoBaiTiaoAdfFgsApp;
 import com.yhbnwghjfdkdfet.tgvshdjg.R;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdapi.MiaoBaiTiaoAdfFgsRetrofitManager;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdbase.BaseMiaoBaiTiaoAdfFgsActivity;
@@ -18,7 +22,6 @@ import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdbase.MiaoBaiTiaoAdfFgsObserv
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdmodel.MiaoBaiTiaoAdfFgsBaseModel;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdmodel.ConfigMiaoBaiTiaoAdfFgsModel;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdmodel.LoginMiaoBaiTiaoAdfFgsModel;
-import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdoaid.MiaoBaiTiaoAdfFgsDevicesIDsHelper;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdutil.ClickMiaoBaiTiaoAdfFgsTextView;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdutil.MiaoBaiTiaoAdfFgsCountDownTimerUtils;
 import com.yhbnwghjfdkdfet.tgvshdjg.miaobaitiaosdfsdutil.SharePreferencesMiaoBaiTiaoAdfFgsUtil;
@@ -40,7 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBaiTiaoAdfFgsActivity implements MiaoBaiTiaoAdfFgsDevicesIDsHelper.AppIdsUpdater{
+public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBaiTiaoAdfFgsActivity{
 
     private EditText mobileEt;
     private EditText verificationEt;
@@ -53,9 +56,8 @@ public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBai
     public View verificationLl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private MiaoBaiTiaoAdfFgsDevicesIDsHelper mDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -83,9 +85,36 @@ public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBai
                 ToastMiaoBaiTiaoAdfFgsUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(MiaoBaiTiaoAdfFgsApp.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -113,15 +142,6 @@ public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBai
                 StaticMiaoBaiTiaoAdfFgsUtil.startActivity(LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity.this, MiaoBaiTiaoAdfFgsUserYsxyMiaoBaiTiaoAdfFgsActivity.class, bundle);
             }
         }, "#FFF1D2");
-    }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mDevicesIDsHelper = new MiaoBaiTiaoAdfFgsDevicesIDsHelper(this);
-        mDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -191,12 +211,6 @@ public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBai
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
-    }
-
     private void getConfig() {
         Observable<MiaoBaiTiaoAdfFgsBaseModel<ConfigMiaoBaiTiaoAdfFgsModel>> observable = MiaoBaiTiaoAdfFgsRetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -236,7 +250,7 @@ public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBai
 
     private void login(String mobileStr, String verificationStr) {
         Observable<MiaoBaiTiaoAdfFgsBaseModel<LoginMiaoBaiTiaoAdfFgsModel>> observable = MiaoBaiTiaoAdfFgsRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -308,21 +322,6 @@ public class LoginMiaoBaiTiaoAdfFgsMiaoBaiTiaoAdfFgsActivity extends BaseMiaoBai
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
