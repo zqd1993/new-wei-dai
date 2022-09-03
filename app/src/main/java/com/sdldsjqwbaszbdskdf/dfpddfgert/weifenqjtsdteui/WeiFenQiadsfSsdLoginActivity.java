@@ -11,14 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.R;
+import com.sdldsjqwbaszbdskdf.dfpddfgert.WeiFenQiadsfSsdApp;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteapi.RongjieSfFgdfRetrofitManager;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtebase.BaseRongjieSfFgdfActivity;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtebase.RongjieSfFgdfObserverManager;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtemodel.RongjieSfFgdfBaseModel;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtemodel.RongjieSfFgdfConfigModel;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtemodel.RongjieSfFgdfLoginModel;
-import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteoaid.RongjieSfFgdfDevicesIDsHelper;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteutil.ClickTextViewWeiFenQiadsfSsd;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteutil.ToastWeiFenQiadsfSsdUtil;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteutil.WeiFenQiadsfSsdCountDownTimerUtils;
@@ -40,7 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity implements RongjieSfFgdfDevicesIDsHelper.AppIdsUpdater{
+public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity{
 
     protected static final int RC_PERM = 123;
 
@@ -56,9 +59,8 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity impl
     private View head_sl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private RongjieSfFgdfDevicesIDsHelper mRongjieSfFgdfDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -86,9 +88,36 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity impl
                 ToastWeiFenQiadsfSsdUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(WeiFenQiadsfSsdApp.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -116,15 +145,6 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity impl
                 StaticWeiFenQiadsfSsdUtil.startActivity(WeiFenQiadsfSsdLoginActivity.this, WeiFenQiadsfSsdUserYsxyActivity.class, bundle);
             }
         }, "#E71C1A");
-    }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mRongjieSfFgdfDevicesIDsHelper = new RongjieSfFgdfDevicesIDsHelper(this);
-        mRongjieSfFgdfDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -194,12 +214,6 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity impl
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
-    }
-
     private void getConfig() {
         Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfConfigModel>> observable = RongjieSfFgdfRetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -239,7 +253,7 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity impl
 
     private void login(String mobileStr, String verificationStr) {
         Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfLoginModel>> observable = RongjieSfFgdfRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -311,21 +325,6 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity impl
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
