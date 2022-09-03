@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fjsdkqwj.pfdioewjnsd",
+  "applicationId": "com.xiaoniukaudiakuandsfwet.vsdaetgerat",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 102,
-      "versionName": "1.0.2",
-      "outputFile": "suijiesuihuan_v1.0.2_build_20220831142705.apk"
+      "versionCode": 103,
+      "versionName": "1.0.3",
+      "outputFile": "suijiesuihuan_v1.0.3_build_20220903153307.apk"
     }
   ]
 }
