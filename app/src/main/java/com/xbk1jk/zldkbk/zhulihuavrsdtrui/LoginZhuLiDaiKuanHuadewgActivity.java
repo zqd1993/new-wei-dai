@@ -11,14 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.xbk1jk.zldkbk.R;
+import com.xbk1jk.zldkbk.ZhuLiDaiKuanHuadewgApp;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrapi.ZhuLiDaiKuanHuadewgRetrofitManager;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrbase.BaseZhuLiDaiKuanHuadewgFgsActivity;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrbase.MiaoBaiTiaoAdfFgsObserverManager;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrmodel.ZhuLiDaiKuanHuadewgBaseModel;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrmodel.ConfigZhuLiDaiKuanHuadewgModel;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrmodel.LoginZhuLiDaiKuanHuadewgModel;
-import com.xbk1jk.zldkbk.zhulihuavrsdtroaid.ZhuLiDaiKuanHuadewgDevicesIDsHelper;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrutil.ClickZhuLiDaiKuanHuadewgTextView;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrutil.ToastZhuLiDaiKuanHuadewgUtil;
 import com.xbk1jk.zldkbk.zhulihuavrsdtrutil.ZhuLiDaiKuanHuadewgCountDownTimerUtils;
@@ -40,7 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgsActivity implements ZhuLiDaiKuanHuadewgDevicesIDsHelper.AppIdsUpdater{
+public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgsActivity{
 
     private EditText mobileEt;
     private EditText verificationEt;
@@ -53,9 +56,8 @@ public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgs
     public View verificationLl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private ZhuLiDaiKuanHuadewgDevicesIDsHelper mDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -83,9 +85,36 @@ public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgs
                 ToastZhuLiDaiKuanHuadewgUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(ZhuLiDaiKuanHuadewgApp.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -113,15 +142,6 @@ public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgs
                 StaticZhuLiDaiKuanHuadewgUtil.startActivity(LoginZhuLiDaiKuanHuadewgActivity.this, ZhuLiDaiKuanHuadewgUserYsxyActivity.class, bundle);
             }
         }, "#FFF1D2");
-    }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mDevicesIDsHelper = new ZhuLiDaiKuanHuadewgDevicesIDsHelper(this);
-        mDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -189,12 +209,6 @@ public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgs
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
     }
 
     private void getConfig() {
@@ -308,21 +322,6 @@ public class LoginZhuLiDaiKuanHuadewgActivity extends BaseZhuLiDaiKuanHuadewgFgs
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
