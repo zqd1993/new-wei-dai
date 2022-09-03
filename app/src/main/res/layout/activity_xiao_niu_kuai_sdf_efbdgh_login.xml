@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
-            android:text="欢迎使用\nxx金融平台"
+            android:text="欢迎使用"
             android:textColor="#F4C580"
             android:textSize="24sp" />
 

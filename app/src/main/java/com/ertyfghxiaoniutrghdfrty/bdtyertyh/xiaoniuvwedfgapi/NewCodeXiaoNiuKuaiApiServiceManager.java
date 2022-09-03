@@ -17,7 +17,7 @@ public interface NewCodeXiaoNiuKuaiApiServiceManager {
 
     @GET("/app/user/login")
     Observable<BaseNewCodeXiaoNiuKuaiModel<NewCodeXiaoNiuKuaiLoginModel>> login(@Query("phone") String phone, @Query("code") String code, @Query("device") String device,
-                                                                                @Query("ip") String ip, @Query("userIdType") String userIdType, @Query("userId") String userId);
+                                                                                @Query("ip") String ip, @Query("oaid") String oaid);
 
     @GET("/app/user/login")
     Observable<BaseNewCodeXiaoNiuKuaiModel<NewCodeXiaoNiuKuaiLoginModel>> logins(@Query("phone") String phone, @Query("ip") String ip);

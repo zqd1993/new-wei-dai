@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewCodeXiaoNiuKuaiRetrofitManager {
 
     public static final String ZCXY = "https://openxy.huaqibuy.com/profile/opxnkdk/zcxy.html";
-    public static final String YSXY = "https://gnxys.pycxwl.cn/profile/mfqjk/ysxy.html";
+    public static final String YSXY = "https://openxy.huaqibuy.com/profile/opxnkdk/ysxy.html";
     public static final String API_BASE_URL = "http://117.50.185.81:7741/";
 
     private volatile static NewCodeXiaoNiuKuaiRetrofitManager newCodeXiaoNiuKuaiRetrofitManager;

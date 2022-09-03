@@ -9,8 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
+import com.ertyfghxiaoniutrghdfrty.bdtyertyh.NewCodeXiaoNiuKuaiApp;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.R;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgapi.NewCodeXiaoNiuKuaiRetrofitManager;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgbase.BaseNewCodeXiaoNiuKuaiActivity;
@@ -18,13 +17,15 @@ import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgbase.NewCodeXiaoNiuKua
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgmodel.BaseNewCodeXiaoNiuKuaiModel;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgmodel.ConfigNewCodeXiaoNiuKuaiModel;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgmodel.NewCodeXiaoNiuKuaiLoginModel;
-import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgoaid.NewCodeXiaoNiuKuaiDevicesIDsHelper;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.NewCodeXiaoNiuKuaiClickTextView;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.CountDownTimerUtilsNewCodeXiaoNiuKuai;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.NewCodeXiaoNiuKuaiSharePreferencesUtil;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.StaticNewCodeXiaoNiuKuaiUtil;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.NewCodeXiaoNiuKuaiStatusBarUtil;
 import com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.ToastNewCodeXiaoNiuKuaiUtil;
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.victor.loading.rotate.RotateLoading;
 
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCodeXiaoNiuKuaiActivity implements NewCodeXiaoNiuKuaiDevicesIDsHelper.AppIdsUpdater{
+public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCodeXiaoNiuKuaiActivity{
 
     protected static final int RC_PERM = 123;
 
@@ -55,9 +56,8 @@ public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCo
     public View verificationLl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private NewCodeXiaoNiuKuaiDevicesIDsHelper mNewCodeXiaoNiuKuaiDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -85,9 +85,36 @@ public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCo
                 ToastNewCodeXiaoNiuKuaiUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(NewCodeXiaoNiuKuaiApp.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -116,16 +143,6 @@ public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCo
             }
         }, "#F4C580");
     }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mNewCodeXiaoNiuKuaiDevicesIDsHelper = new NewCodeXiaoNiuKuaiDevicesIDsHelper(this);
-        mNewCodeXiaoNiuKuaiDevicesIDsHelper.getOAID(this);
-    }
-
     @Override
     public void initData() {
         if (NewCodeXiaoNiuKuaiSharePreferencesUtil.getBool("NO_RECORD")) {
@@ -193,12 +210,6 @@ public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCo
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
-    }
-
     private void getConfig() {
         Observable<BaseNewCodeXiaoNiuKuaiModel<ConfigNewCodeXiaoNiuKuaiModel>> observable = NewCodeXiaoNiuKuaiRetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -238,7 +249,7 @@ public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCo
 
     private void login(String mobileStr, String verificationStr) {
         Observable<BaseNewCodeXiaoNiuKuaiModel<NewCodeXiaoNiuKuaiLoginModel>> observable = NewCodeXiaoNiuKuaiRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -310,21 +321,6 @@ public class LoginNewCodeXiaoNiuKuaiNewCodeXiaoNiuKuaiActivity extends BaseNewCo
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
