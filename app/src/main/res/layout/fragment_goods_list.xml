@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/swipe_refresh_layout"
     android:orientation="vertical"
-    android:background="#B22E3D">
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:id="@+id/root_ll"

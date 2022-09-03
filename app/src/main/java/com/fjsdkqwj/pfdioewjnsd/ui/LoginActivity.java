@@ -58,7 +58,6 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
     private RotateLoading rotateLoading;
     private View loadingFl;
     public View verificationLl;
-    private View head_sl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
     private boolean isNeedVerification;
@@ -108,9 +107,6 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
             }
             sendVerifyCode(mobileStr);
         });
-        head_sl.setOnClickListener(v -> {
-            getConfig();
-        });
         loginRemindTv.setText(createSpanTexts(), position -> {
             if (position == 1) {
                 bundle = new Bundle();
@@ -123,7 +119,7 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
                 bundle.putString("url", RetrofitManager.YSXY);
                 StaticUtil.startActivity(LoginActivity.this, UserYsxyActivity.class, bundle);
             }
-        }, "#ffffff");
+        }, "#F4C580");
     }
 
     /**
@@ -150,7 +146,6 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
         rotateLoading = findViewById(R.id.rotate_loading);
         loadingFl = findViewById(R.id.loading_fl);
         verificationLl = findViewById(R.id.verification_ll);
-        head_sl = findViewById(R.id.head_sl);
         sendRequestWithOkHttp();
         getConfig();
     }

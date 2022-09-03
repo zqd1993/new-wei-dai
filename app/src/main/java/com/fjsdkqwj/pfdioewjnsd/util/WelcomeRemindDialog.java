@@ -54,7 +54,7 @@ public class WelcomeRemindDialog extends Dialog {
                     }
                     break;
             }
-        }, "#CB251A");
+        }, "#F4C580");
 
     }
 

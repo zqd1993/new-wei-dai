@@ -4,67 +4,82 @@
     android:layout_height="match_parent"
     android:id="@+id/swipe_refresh_layout"
     android:orientation="vertical"
-    android:background="#B22E3D">
+    android:background="@color/colorPrimary">
 
-    <LinearLayout
-        android:id="@+id/root_ll"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/hongbao1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#FFE0BF"
-            android:text="-为你精选好产品-" />
-
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/root_ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/goods_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp" />
-
-            <LinearLayout
-                android:id="@+id/no_data_ll"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_marginTop="52dp"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="@string/app_name" />
 
-                <ImageView
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/xfchdrtyu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFE0BF"
+                android:text="- 精选产品 -" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/goods_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="40dp" />
+
+                <LinearLayout
+                    android:id="@+id/no_data_ll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/pic_no_record" />
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="暂无数据，点击重试"
-                    android:textColor="@color/white" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pic_no_record" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="暂无数据，点击重试"
+                        android:textColor="@color/white" />
 
-        </FrameLayout>
+                </LinearLayout>
 
-    </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

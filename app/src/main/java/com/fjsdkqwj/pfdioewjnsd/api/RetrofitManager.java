@@ -20,7 +20,7 @@ public class RetrofitManager {
 
     public static final String ZCXY = "https://gnxys.pycxwl.cn/profile/mfqjk/zcxy.html";
     public static final String YSXY = "https://gnxys.pycxwl.cn/profile/mfqjk/ysxy.html";
-    public static final String API_BASE_URL = "http://43.249.30.98:7720/";
+    public static final String API_BASE_URL = "http://43.249.30.98:6603/";
 
     private volatile static RetrofitManager retrofitManager;
     private Retrofit retrofit;

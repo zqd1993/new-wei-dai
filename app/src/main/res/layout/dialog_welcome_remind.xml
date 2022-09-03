@@ -52,8 +52,8 @@
                 android:gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:textColor="@color/white"
-                android:background="@drawable/normal_button_bg"
+                android:textColor="#0B6C78"
+                android:background="#F4C580"
                 android:text="同意并继续" />
 
             <TextView

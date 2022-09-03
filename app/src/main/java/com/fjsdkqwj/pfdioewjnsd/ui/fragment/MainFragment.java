@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -153,7 +154,7 @@ public class MainFragment extends BaseFragment {
             goodsListAdapter.setHasStableIds(true);
             goodsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
-            goodsList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            goodsList.setLayoutManager(new LinearLayoutManager(getActivity()));
             goodsList.setAdapter(goodsListAdapter);
         } else {
             goodsListAdapter.replaceData(mData);

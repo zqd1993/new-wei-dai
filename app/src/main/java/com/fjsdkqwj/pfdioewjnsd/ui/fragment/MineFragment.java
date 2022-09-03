@@ -45,8 +45,8 @@ public class MineFragment extends BaseFragment {
     private String mobileStr;
     private MineItemAdapter mineItemAdapter;
     private List<MineItemModel> list;
-    private int[] imgRes = {R.drawable.tubiao1, R.drawable.tubiao2, R.drawable.tubiao3,
-            R.drawable.tubiao4, R.drawable.tubiao5, R.drawable.tubiao6};
+    private int[] imgRes = {R.drawable.dfgeryxch, R.drawable.fnsrtu, R.drawable.kfghx,
+            R.drawable.bdtfujs, R.drawable.fdyurtyu, R.drawable.tyjghj};
     private String[] tvRes = {"注册协议", "隐私协议", "投诉邮箱", "关于我们", "个性化推荐", "注销账户"};
     private Bundle bundle;
     private RemindDialog mRemindDialog;
