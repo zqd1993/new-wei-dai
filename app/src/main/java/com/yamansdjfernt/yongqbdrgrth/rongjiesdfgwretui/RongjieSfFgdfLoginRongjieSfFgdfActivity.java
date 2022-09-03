@@ -11,14 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.yamansdjfernt.yongqbdrgrth.R;
+import com.yamansdjfernt.yongqbdrgrth.RongjieSfFgdfApp;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretapi.RongjieSfFgdfRetrofitManager;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretbase.BaseRongjieSfFgdfActivity;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretbase.RongjieSfFgdfObserverManager;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretmodel.RongjieSfFgdfBaseModel;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretmodel.RongjieSfFgdfConfigModel;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretmodel.RongjieSfFgdfLoginModel;
-import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretoaid.RongjieSfFgdfDevicesIDsHelper;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretutil.ClickTextViewRongjieSfFgdf;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretutil.RongjieSfFgdfCountDownTimerUtils;
 import com.yamansdjfernt.yongqbdrgrth.rongjiesdfgwretutil.SharePreferencesUtilRongjieSfFgdf;
@@ -40,7 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfActivity implements RongjieSfFgdfDevicesIDsHelper.AppIdsUpdater{
+public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfActivity{
 
     protected static final int RC_PERM = 123;
 
@@ -53,12 +56,10 @@ public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfAc
     private RotateLoading rotateLoading;
     private View loadingFl;
     public View verificationLl;
-    private View head_sl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private RongjieSfFgdfDevicesIDsHelper mRongjieSfFgdfDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -86,9 +87,36 @@ public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfAc
                 ToastRongjieSfFgdfUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(RongjieSfFgdfApp.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -116,15 +144,6 @@ public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfAc
                 StaticRongjieSfFgdfUtil.startActivity(RongjieSfFgdfLoginRongjieSfFgdfActivity.this, RongjieSfFgdfUserYsxyRongjieSfFgdfActivity.class, bundle);
             }
         }, "#E71C1A");
-    }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mRongjieSfFgdfDevicesIDsHelper = new RongjieSfFgdfDevicesIDsHelper(this);
-        mRongjieSfFgdfDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -194,12 +213,6 @@ public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfAc
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
-    }
-
     private void getConfig() {
         Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfConfigModel>> observable = RongjieSfFgdfRetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -239,7 +252,7 @@ public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfAc
 
     private void login(String mobileStr, String verificationStr) {
         Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfLoginModel>> observable = RongjieSfFgdfRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -311,21 +324,6 @@ public class RongjieSfFgdfLoginRongjieSfFgdfActivity extends BaseRongjieSfFgdfAc
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
