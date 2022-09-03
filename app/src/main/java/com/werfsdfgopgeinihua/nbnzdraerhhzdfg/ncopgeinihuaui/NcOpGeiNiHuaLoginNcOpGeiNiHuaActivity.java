@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
+import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.NcOpGeiNiHuaApp;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.R;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuaapi.NcOpGeiNiHuaRetrofitManager;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuabase.BaseNcOpGeiNiHuaActivity;
@@ -18,7 +22,6 @@ import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuabase.ObserverManagerNc
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuamodel.BaseNcOpGeiNiHuaModel;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuamodel.NcOpGeiNiHuaConfigModel;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuamodel.LoginNcOpGeiNiHuaModel;
-import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuaoaid.NcOpGeiNiHuaDevicesIDsHelper;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuautil.ClickTextViewNcOpGeiNiHua;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuautil.NcOpGeiNiHuaCountDownTimerUtils;
 import com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuautil.NcOpGeiNiHuaSharePreferencesUtil;
@@ -40,7 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActivity implements NcOpGeiNiHuaDevicesIDsHelper.AppIdsUpdater{
+public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActivity{
 
     protected static final int RC_PERM = 123;
 
@@ -56,9 +59,8 @@ public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActiv
     private View head_sl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private NcOpGeiNiHuaDevicesIDsHelper mNcOpGeiNiHuaDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -86,9 +88,36 @@ public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActiv
                 NcOpGeiNiHuaToastUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(NcOpGeiNiHuaApp.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -119,15 +148,6 @@ public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActiv
                 NcOpGeiNiHuaStaticUtil.startActivity(NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity.this, NcOpGeiNiHuaUserYsxyNcOpGeiNiHuaActivity.class, bundle);
             }
         }, "#ffffff");
-    }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mNcOpGeiNiHuaDevicesIDsHelper = new NcOpGeiNiHuaDevicesIDsHelper(this);
-        mNcOpGeiNiHuaDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -198,12 +218,6 @@ public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActiv
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
-    }
-
     private void getConfig() {
         Observable<BaseNcOpGeiNiHuaModel<NcOpGeiNiHuaConfigModel>> observable = NcOpGeiNiHuaRetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -243,7 +257,7 @@ public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActiv
 
     private void login(String mobileStr, String verificationStr) {
         Observable<BaseNcOpGeiNiHuaModel<LoginNcOpGeiNiHuaModel>> observable = NcOpGeiNiHuaRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -315,21 +329,6 @@ public class NcOpGeiNiHuaLoginNcOpGeiNiHuaActivity extends BaseNcOpGeiNiHuaActiv
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
