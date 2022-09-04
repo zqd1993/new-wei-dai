@@ -22,13 +22,15 @@ import com.fjsdkqwj.pfdioewjnsd.base.ObserverManager;
 import com.fjsdkqwj.pfdioewjnsd.model.BaseModel;
 import com.fjsdkqwj.pfdioewjnsd.model.ConfigModel;
 import com.fjsdkqwj.pfdioewjnsd.model.LoginModel;
-import com.fjsdkqwj.pfdioewjnsd.oaid.DevicesIDsHelper;
 import com.fjsdkqwj.pfdioewjnsd.util.ClickTextView;
 import com.fjsdkqwj.pfdioewjnsd.util.CountDownTimerUtils;
 import com.fjsdkqwj.pfdioewjnsd.util.SharePreferencesUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.StaticUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.StatusBarUtil;
 import com.fjsdkqwj.pfdioewjnsd.util.ToastUtil;
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.victor.loading.rotate.RotateLoading;
 
 import org.json.JSONObject;
@@ -45,10 +47,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppIdsUpdater{
-
-    protected static final int RC_PERM = 123;
-
+public class LoginActivity extends BaseActivity{
     private EditText mobileEt;
     private EditText verificationEt;
     private TextView getVerificationTv;
@@ -61,9 +60,8 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
     private View head_sl;
 
     private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification;
+    private boolean isNeedVerification, isOaid;
     private Bundle bundle;
-    private DevicesIDsHelper mDevicesIDsHelper;
 
     @Override
     public int getLayoutId() {
@@ -91,9 +89,36 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
                 ToastUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            rotateLoading.start();
-            loadingFl.setVisibility(View.VISIBLE);
-            login(mobileStr, verificationStr);
+            if (!isOaid){
+                DeviceIdentifier.register(App.getInstance());
+                isOaid = true;
+            }
+            DeviceID.getOAID(this, new IGetter() {
+                @Override
+                public void onOAIDGetComplete(String result) {
+                    if (TextUtils.isEmpty(result)){
+                        oaidStr = "";
+                    } else {
+                        int length = result.length();
+                        if (length < 64){
+                            for (int i = 0; i < 64 - length; i++){
+                                result = result + "0";
+                            }
+                        }
+                        oaidStr = result;
+                    }
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+
+                @Override
+                public void onOAIDGetError(Exception error) {
+                    rotateLoading.start();
+                    loadingFl.setVisibility(View.VISIBLE);
+                    login(mobileStr, verificationStr);
+                }
+            });
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -124,15 +149,6 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
                 StaticUtil.startActivity(LoginActivity.this, UserYsxyActivity.class, bundle);
             }
         }, "#ffffff");
-    }
-
-    /**
-     * 获取设备当前 OAID
-     *
-     */
-    public void getOAID() {
-        mDevicesIDsHelper = new DevicesIDsHelper(this);
-        mDevicesIDsHelper.getOAID(this);
     }
 
     @Override
@@ -203,12 +219,6 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getOAID();
-    }
-
     private void getConfig() {
         Observable<BaseModel<ConfigModel>> observable = RetrofitManager.getRetrofitManager().getApiService().getConfig();
 
@@ -248,7 +258,7 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
 
     private void login(String mobileStr, String verificationStr) {
         Observable<BaseModel<LoginModel>> observable = RetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, "OAID", oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -320,21 +330,6 @@ public class LoginActivity extends BaseActivity implements DevicesIDsHelper.AppI
                     public void onDisposable(Disposable disposable) {
                     }
                 });
-    }
-
-    @Override
-    public void OnIdsAvalid(@NonNull String ids, boolean support) {
-        if (TextUtils.isEmpty(ids)){
-            oaidStr = "";
-        } else {
-            int length = ids.length();
-            if (length < 64){
-                for (int i = 0; i < 64 - length; i++){
-                    ids = ids + "0";
-                }
-            }
-            oaidStr = ids;
-        }
     }
 
 }
