@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fjsdkqwj.pfdioewjnsd.R;
@@ -39,15 +40,15 @@ import io.reactivex.schedulers.Schedulers;
 public class MineFragment extends BaseFragment {
 
     private TextView customerMobileTv;
-    private RecyclerView mineList;
-    private View logoutBtn;
+    private RecyclerView mineList, mineList1;
+    private View logoutBtn, zhuxiao_tv;
 
     private String mobileStr;
-    private MineItemAdapter mineItemAdapter;
-    private List<MineItemModel> list;
-    private int[] imgRes = {R.drawable.dfgeryxch, R.drawable.fnsrtu, R.drawable.kfghx,
-            R.drawable.bdtfujs, R.drawable.fdyurtyu, R.drawable.tyjghj};
-    private String[] tvRes = {"注册协议", "隐私协议", "投诉邮箱", "关于我们", "个性化推荐", "注销账户"};
+    private MineItemAdapter mineItemAdapter, mineItemAdapter1;
+    private List<MineItemModel> list, list1;
+    private int[] imgRes = {R.drawable.rtgh, R.drawable.dfgjvbn, R.drawable.srtyhfgx,
+            R.drawable.vbnsr, R.drawable.zdfhx};
+    private String[] tvRes = {"注册协议", "隐私协议", "投诉邮箱", "关于我们", "个性化推荐"};
     private Bundle bundle;
     private RemindDialog mRemindDialog;
     private ClipboardManager clipboard;
@@ -65,14 +66,21 @@ public class MineFragment extends BaseFragment {
         customerMobileTv = rootView.findViewById(R.id.customer_mobile_tv);
         mineList = rootView.findViewById(R.id.mine_list);
         logoutBtn = rootView.findViewById(R.id.logout_btn);
+        zhuxiao_tv = rootView.findViewById(R.id.zhuxiao_tv);
+        mineList1 = rootView.findViewById(R.id.mine_list_1);
         list = new ArrayList<>();
+        list1 = new ArrayList<>();
         mobileStr = SharePreferencesUtil.getString("phone");
         customerMobileTv.setText(mobileStr);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             MineItemModel model = new MineItemModel();
             model.setImgRes(imgRes[i]);
             model.setItemTitle(tvRes[i]);
-            list.add(model);
+            if (i < 3) {
+                list.add(model);
+            } else {
+                list1.add(model);
+            };
         }
         setMineData();
     }
@@ -98,6 +106,9 @@ public class MineFragment extends BaseFragment {
             mRemindDialog.show();
             mRemindDialog.setBtnStr("取消", "退出");
         });
+        zhuxiao_tv.setOnClickListener(v -> {
+            StaticUtil.startActivity(getActivity(), CancellationActivity.class, null);
+        });
     }
 
     private void setMineData(){
@@ -120,10 +131,19 @@ public class MineFragment extends BaseFragment {
                 case 2:
                     getConfig();
                     break;
-                case 3:
+            }
+        });
+        mineList.setHasFixedSize(true);
+        mineList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mineList.setAdapter(mineItemAdapter);
+        mineItemAdapter1 =  new MineItemAdapter(R.layout.adapter_mine_list_layout_1, list1);
+        mineItemAdapter1.setHasStableIds(true);
+        mineItemAdapter1.setItemClickListener(position -> {
+            switch (position){
+                case 0:
                     StaticUtil.startActivity(getActivity(), AppInfoActivity.class, null);
                     break;
-                case 4:
+                case 1:
                     mRemindDialog = new RemindDialog(getActivity(), "温馨提示", "关闭或开启推送", false);
                     mRemindDialog.setBtnClickListener(new RemindDialog.BtnClickListener() {
                         @Override
@@ -141,14 +161,11 @@ public class MineFragment extends BaseFragment {
                     mRemindDialog.show();
                     mRemindDialog.setBtnStr("开启", "关闭");
                     break;
-                case 5:
-                    StaticUtil.startActivity(getActivity(), CancellationActivity.class, null);
-                    break;
             }
         });
-        mineList.setHasFixedSize(true);
-        mineList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mineList.setAdapter(mineItemAdapter);
+        mineList1.setHasFixedSize(true);
+        mineList1.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mineList1.setAdapter(mineItemAdapter1);
     }
 
     private void getConfig() {

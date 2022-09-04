@@ -137,7 +137,7 @@ public class GodsListFragment extends BaseFragment {
                     @Override
                     public void onFinish() {
                         bundle = new Bundle();
-                        bundle.putInt("tag", 1);
+                        bundle.putString("title", goodsModel.getProductName());
                         bundle.putString("url", goodsModel.getUrl());
                         StaticUtil.startActivity(getActivity(), GoodsDetailsActivity.class, bundle);
                     }

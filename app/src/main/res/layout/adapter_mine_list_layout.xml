@@ -3,10 +3,6 @@
     android:id="@+id/parent_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="7dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="35dp"
-    android:background="@drawable/corner_white_10_bg"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:paddingBottom="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -22,15 +18,15 @@
             android:id="@+id/item_img"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/dfgeryxch" />
+            android:src="@drawable/rtgh" />
 
         <TextView
             android:id="@+id/item_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="注册协议"
-            android:textColor="@color/normal_color"
+            android:textColor="#FFD67C"
             android:textSize="12sp" />
 
     </LinearLayout>
