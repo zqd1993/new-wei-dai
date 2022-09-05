@@ -24,7 +24,7 @@
             android:textSize="@dimen/sp_16"
             tools:text="温馨提示" />
 
-        <com.werfsdfgopgeinihua.nbnzdraerhhzdfg.ncopgeinihuautil.ClickTextViewNcOpGeiNiHua
+        <com.geihuawefvjelkfu.qwersdbn.ncopgeinihuautil.ClickTextViewNcOpGeiNiHua
             android:id="@+id/content_tv"
             android:visibility="visible"
             android:layout_width="wrap_content"
