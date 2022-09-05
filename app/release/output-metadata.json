@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.xiaoniukaudiakuandsfwet.vsdaetgerat",
+  "applicationId": "com.youjie.pocket",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 103,
-      "versionName": "1.0.3",
-      "outputFile": "suijiesuihuan_v1.0.3_build_20220903170140.apk"
+      "versionCode": 20220905,
+      "versionName": "1.6.0",
+      "outputFile": "suijiesuihuan_v1.6.0_build_20220905181331.apk"
     }
   ]
 }

@@ -24,9 +24,9 @@
 -packageobfuscationdictionary bt-proguard.txt
 
 # Bean类不能混淆
--keep public class com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgmodel.**{*;}
+-keep public class com.youjiegherh.pocketqwrh.youjiewetdfhmodel.**{*;}
 
--keep public class com.ertyfghxiaoniutrghdfrty.bdtyertyh.xiaoniuvwedfgutil.NewCodeXiaoNiuKuaiSharePreferencesUtil
+-keep public class com.youjiegherh.pocketqwrh.youjiewetdfhutil.YouJieSDjdfiSharePreferencesUtil
 
 -keep class repeackage.com.uodis.opendevice.aidl.** { *; }
 -keep interface repeackage.com.uodis.opendevice.aidl.** { *; }
