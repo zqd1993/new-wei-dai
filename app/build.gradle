@@ -5,9 +5,9 @@ plugins {
 android {
     signingConfigs {
         config {
-            keyAlias "jinzhudfent"
+            keyAlias "cujinzhuenviv"
             keyPassword "psd123456"
-            storeFile file("./jinzhudfent.jks")
+            storeFile file("./cujinzhuenviv.jks")
             storePassword "psd123456"
         }
     }
@@ -15,7 +15,7 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.jinzhudfent.bbsdfwewfg"
+        applicationId "com.geihuawefvjelkfu.qwersdbn"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 100
