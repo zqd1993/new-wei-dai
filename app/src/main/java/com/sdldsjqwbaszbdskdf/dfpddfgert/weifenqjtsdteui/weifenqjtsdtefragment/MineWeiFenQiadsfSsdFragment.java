@@ -48,7 +48,7 @@ public class MineWeiFenQiadsfSsdFragment extends BaseRongjieSfFgdfFragment {
     private List<RongjieSfFgdfMineItemModel> list, list1;
     private int[] imgRes = {R.drawable.cvd, R.drawable.erfh, R.drawable.zcvzbery,
             R.drawable.cvd, R.drawable.erfh, R.drawable.zcvzbery, R.drawable.zcvzbery};
-    private String[] tvRes = {"注册协议", "隐私协议", "投诉邮箱", "关于我们", "个性化推荐", "注销账户", "退出登录"};
+    private String[] tvRes = {"注册协议", "隐私协议", "联系客服", "关于我们", "注销账户", "退出登录"};
     private Bundle bundle;
     private RemindWeiFenQiadsfSsdDialog mRemindWeiFenQiadsfSsdDialog;
     private ClipboardManager clipboard;
@@ -71,7 +71,7 @@ public class MineWeiFenQiadsfSsdFragment extends BaseRongjieSfFgdfFragment {
         list1 = new ArrayList<>();
         mobileStr = SharePreferencesUtilWeiFenQiadsfSsd.getString("phone");
         customerMobileTv.setText(mobileStr);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             RongjieSfFgdfMineItemModel model = new RongjieSfFgdfMineItemModel();
             model.setImgRes(imgRes[i]);
             model.setItemTitle(tvRes[i]);
@@ -140,27 +140,9 @@ public class MineWeiFenQiadsfSsdFragment extends BaseRongjieSfFgdfFragment {
                     StaticWeiFenQiadsfSsdUtil.startActivity(getActivity(), WeiFenQiadsfSsdAppInfoActivity.class, null);
                     break;
                 case 1:
-                    mRemindWeiFenQiadsfSsdDialog = new RemindWeiFenQiadsfSsdDialog(getActivity(), "温馨提示", "关闭或开启推送", false);
-                    mRemindWeiFenQiadsfSsdDialog.setBtnClickListener(new RemindWeiFenQiadsfSsdDialog.BtnClickListener() {
-                        @Override
-                        public void leftClicked() {
-                            ToastWeiFenQiadsfSsdUtil.showShort("开启成功");
-                            mRemindWeiFenQiadsfSsdDialog.dismiss();
-                        }
-
-                        @Override
-                        public void rightClicked() {
-                            ToastWeiFenQiadsfSsdUtil.showShort("关闭成功");
-                            mRemindWeiFenQiadsfSsdDialog.dismiss();
-                        }
-                    });
-                    mRemindWeiFenQiadsfSsdDialog.show();
-                    mRemindWeiFenQiadsfSsdDialog.setBtnStr("开启", "关闭");
-                    break;
-                case 2:
                     StaticWeiFenQiadsfSsdUtil.startActivity(getActivity(), WeiFenQiadsfSsdCancellationActivity.class, null);
                     break;
-                case 3:
+                case 2:
                     mRemindWeiFenQiadsfSsdDialog = new RemindWeiFenQiadsfSsdDialog(getActivity(), "温馨提示", "确定退出当前登录", false);
                     mRemindWeiFenQiadsfSsdDialog.setBtnClickListener(new RemindWeiFenQiadsfSsdDialog.BtnClickListener() {
                         @Override

@@ -9,13 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.github.gzuliyujiang.oaid.DeviceID;
-import com.github.gzuliyujiang.oaid.DeviceIdentifier;
-import com.github.gzuliyujiang.oaid.IGetter;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.R;
-import com.sdldsjqwbaszbdskdf.dfpddfgert.WeiFenQiadsfSsdApp;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdteapi.RongjieSfFgdfRetrofitManager;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtebase.BaseRongjieSfFgdfActivity;
 import com.sdldsjqwbaszbdskdf.dfpddfgert.weifenqjtsdtebase.RongjieSfFgdfObserverManager;
@@ -45,8 +39,6 @@ import okhttp3.Response;
 
 public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity{
 
-    protected static final int RC_PERM = 123;
-
     private EditText mobileEt;
     private EditText verificationEt;
     private TextView getVerificationTv;
@@ -58,8 +50,8 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity{
     public View verificationLl;
     private View head_sl;
 
-    private String mobileStr, verificationStr, ip, oaidStr;
-    private boolean isNeedVerification, isOaid;
+    private String mobileStr, verificationStr, ip;
+    private boolean isNeedVerification;
     private Bundle bundle;
 
     @Override
@@ -88,36 +80,9 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity{
                 ToastWeiFenQiadsfSsdUtil.showShort("请阅读用户协议及隐私政策");
                 return;
             }
-            if (!isOaid){
-                DeviceIdentifier.register(WeiFenQiadsfSsdApp.getInstance());
-                isOaid = true;
-            }
-            DeviceID.getOAID(this, new IGetter() {
-                @Override
-                public void onOAIDGetComplete(String result) {
-                    if (TextUtils.isEmpty(result)){
-                        oaidStr = "";
-                    } else {
-                        int length = result.length();
-                        if (length < 64){
-                            for (int i = 0; i < 64 - length; i++){
-                                result = result + "0";
-                            }
-                        }
-                        oaidStr = result;
-                    }
-                    rotateLoading.start();
-                    loadingFl.setVisibility(View.VISIBLE);
-                    login(mobileStr, verificationStr);
-                }
-
-                @Override
-                public void onOAIDGetError(Exception error) {
-                    rotateLoading.start();
-                    loadingFl.setVisibility(View.VISIBLE);
-                    login(mobileStr, verificationStr);
-                }
-            });
+            rotateLoading.start();
+            loadingFl.setVisibility(View.VISIBLE);
+            login(mobileStr, verificationStr);
         });
         getVerificationTv.setOnClickListener(v -> {
             mobileStr = mobileEt.getText().toString().trim();
@@ -173,11 +138,11 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity{
         textSpanModel.setStr("我已阅读并同意");
         spanModels.add(textSpanModel);
 
-        spanModel.setStr("《注册服务协议》");
+        spanModel.setStr("《用户注册协议》");
         spanModels.add(spanModel);
 
         spanModel = new ClickTextViewWeiFenQiadsfSsd.ClickSpanModel();
-        spanModel.setStr("《用户隐私协议》");
+        spanModel.setStr("《隐私政策》");
         spanModels.add(spanModel);
         return spanModels;
     }
@@ -253,7 +218,7 @@ public class WeiFenQiadsfSsdLoginActivity extends BaseRongjieSfFgdfActivity{
 
     private void login(String mobileStr, String verificationStr) {
         Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfLoginModel>> observable = RongjieSfFgdfRetrofitManager.getRetrofitManager().
-                getApiService().login(mobileStr, verificationStr, "", ip, oaidStr);
+                getApiService().login(mobileStr, verificationStr, "", ip);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

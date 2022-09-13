@@ -18,9 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RongjieSfFgdfRetrofitManager {
 
-    public static final String ZCXY = "https://gnxys.pycxwl.cn/profile/vowfqjt/zcxy.html";
-    public static final String YSXY = "https://gnxys.pycxwl.cn/profile/vowfqjt/ysxy.html";
-    public static final String API_BASE_URL = "http://121.41.122.164:7725/";
+    public static final String ZCXY = "https://openxy.huaqibuy.com/profile/hwtqhdk/zcxy.html";
+    public static final String YSXY = "https://openxy.huaqibuy.com/profile/hwtqhdk/ysxy.html";
+    public static final String API_BASE_URL = "http://47.98.62.38:7733/";
 
     private volatile static RongjieSfFgdfRetrofitManager rongjieSfFgdfRetrofitManager;
     private Retrofit retrofit;

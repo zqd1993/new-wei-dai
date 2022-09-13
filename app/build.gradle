@@ -5,9 +5,9 @@ plugins {
 android {
     signingConfigs {
         config {
-            keyAlias "weifenqieffdrer"
+            keyAlias "erthdfgsdhdfghr"
             keyPassword "psd123456"
-            storeFile file("./weifenqieffdrer.jks")
+            storeFile file("./erthdfgsdhdfghr.jks")
             storePassword "psd123456"
         }
     }
@@ -15,11 +15,11 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.sdldsjqwbaszbdskdf.dfpd"
+        applicationId "com.qowjshshsnzxsjdsjdskjsdf.dq"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 100
-        versionName "1.0.0"
+        versionCode 101
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,7 +39,7 @@ android {
     }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "suijiesuihuan_v${variant.versionName}_build_${releaseTime()}.apk"
+            outputFileName = "tiqianhua_v${variant.versionName}_build_${releaseTime()}.apk"
         }
     }
 
@@ -88,5 +88,4 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.github.bumptech.glide:compiler:4.9.0'
-    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.4'
 }

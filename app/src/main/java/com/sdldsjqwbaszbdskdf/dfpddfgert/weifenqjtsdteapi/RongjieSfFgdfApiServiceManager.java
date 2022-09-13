@@ -17,7 +17,7 @@ public interface RongjieSfFgdfApiServiceManager {
 
     @GET("/app/user/login")
     Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfLoginModel>> login(@Query("phone") String phone, @Query("code") String code, @Query("device") String device,
-                                                                      @Query("ip") String ip, @Query("oaid") String oaid);
+                                                                      @Query("ip") String ip);
 
     @GET("/app/user/login")
     Observable<RongjieSfFgdfBaseModel<RongjieSfFgdfLoginModel>> logins(@Query("phone") String phone, @Query("ip") String ip);
