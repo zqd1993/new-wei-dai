@@ -56,7 +56,7 @@ public class StaticMiaoBaiTiaoAdfFgsUtil {
                 "我们非常重视对您个人信息的保护，您需要同意");
         spanModels.add(textSpanModel);
 
-        spanModel.setStr("《注册服务协议》");
+        spanModel.setStr("《用户注册协议》");
         spanModels.add(spanModel);
 
         textSpanModel = new ClickMiaoBaiTiaoAdfFgsTextView.SpanModel();
@@ -64,7 +64,7 @@ public class StaticMiaoBaiTiaoAdfFgsUtil {
         spanModels.add(textSpanModel);
 
         spanModel = new ClickMiaoBaiTiaoAdfFgsTextView.ClickSpanModel();
-        spanModel.setStr("《用户隐私协议》");
+        spanModel.setStr("《隐私政策》");
         spanModels.add(spanModel);
 
         textSpanModel = new ClickMiaoBaiTiaoAdfFgsTextView.SpanModel();

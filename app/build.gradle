@@ -5,9 +5,9 @@ plugins {
 android {
     signingConfigs {
         config {
-            keyAlias "miaobaitiaosdfgewt"
+            keyAlias "nmrtgwetujxfgj"
             keyPassword "psd123456"
-            storeFile file("./miaobaitiaosdfgewt.jks")
+            storeFile file("./nmrtgwetujxfgj.jks")
             storePassword "psd123456"
         }
     }
@@ -15,7 +15,7 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.yhbnwghjfdkdfet.tgvshdjg"
+        applicationId "com.mbnmhj.poioh"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 100
@@ -88,5 +88,4 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.github.bumptech.glide:compiler:4.9.0'
-    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.4'
 }
