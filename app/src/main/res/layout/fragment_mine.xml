@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B22E3D"
+    android:background="@drawable/zdrhdfgh"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -20,58 +20,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:src="@drawable/icon_head" />
+        android:src="@drawable/wd_tx" />
 
     <TextView
         android:id="@+id/customer_mobile_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="123456789"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mine_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mine_list_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
     <com.lihang.ShadowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        app:hl_angle="270"
-        app:hl_cornerRadius="10dp"
-        app:hl_endColor="#FFDAAB"
-        app:hl_startColor="#FFF1DB">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mine_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp" />
-
-    </com.lihang.ShadowLayout>
-
-    <com.lihang.ShadowLayout
-        android:id="@+id/logout_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        app:hl_angle="270"
-        app:hl_cornerRadius="10dp"
-        app:hl_endColor="#FFDAAB"
-        app:hl_startColor="#FFF1DB">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        app:hl_cornerRadius="50dp"
+        app:hl_endColor="#FBF6F2"
+        app:hl_startColor="#EED4BD">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:text="退出登录"
             android:textColor="@color/normal_color"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
     </com.lihang.ShadowLayout>
 

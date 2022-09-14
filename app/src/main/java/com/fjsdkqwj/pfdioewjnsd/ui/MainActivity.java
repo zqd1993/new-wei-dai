@@ -42,8 +42,8 @@ public class MainActivity extends BaseActivity {
     private long exitTime = 0;
     private List<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles = {"首页", "精选", "我的"};
-    private int[] uncheckedIcon = {R.drawable.shouye2, R.drawable.jingxuan2, R.drawable.wode2};
-    private int[] checkedIcon = {R.drawable.shouye1, R.drawable.jingxuan1, R.drawable.wode1};
+    private int[] uncheckedIcon = {R.drawable.lpyu, R.drawable.cvsdtuas, R.drawable.mxvcaer};
+    private int[] checkedIcon = {R.drawable.bdxrty, R.drawable.tydudfg, R.drawable.eryf};
     private ArrayList<CustomTabEntity> customTabEntities;
 
     @Override

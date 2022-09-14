@@ -15,7 +15,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/white">
+        android:background="#3C3C43">
 
         <com.flyco.tablayout.CommonTabLayout
             android:id="@+id/tab_layout"
@@ -28,7 +28,7 @@
             app:tl_iconVisible="true"
             app:tl_iconWidth="27dp"
             app:tl_textSelectColor="@color/colorPrimary"
-            app:tl_textUnselectColor="#676767"
+            app:tl_textUnselectColor="#978B83"
             app:tl_textsize="14sp"
             app:tl_indicator_height="0dp"/>
 

@@ -148,7 +148,7 @@ public class LoginActivity extends BaseActivity{
                 bundle.putString("url", RetrofitManager.YSXY);
                 StaticUtil.startActivity(LoginActivity.this, UserYsxyActivity.class, bundle);
             }
-        }, "#ffffff");
+        }, "#EED4BD");
     }
 
     @Override

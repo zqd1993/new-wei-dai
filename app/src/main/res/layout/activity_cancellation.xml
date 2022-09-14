@@ -49,7 +49,7 @@
             android:gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="#F0AC0A"
+            android:textColor="@color/normal_color"
             android:background="@drawable/text_yuan_bg"
             android:text="提交" />
 
