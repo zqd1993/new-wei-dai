@@ -150,7 +150,7 @@
                     android:layout_marginStart="12dp"
                     android:textSize="@dimen/sp_16"
                     android:textColor="#FFF2D4"
-                    android:text="优质推荐"
+                    android:text="热门产品"
                     android:drawableStart="@drawable/fghxfgn"
                     android:drawablePadding="6dp"/>
 
