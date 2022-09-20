@@ -8,6 +8,7 @@ import com.asvsdfer.new_master_code.mode.LoginModel;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -32,5 +33,5 @@ public interface ApiManager {
     Observable<BaseModel> productClick(@Query("productId") long productId, @Query("phone") String phone);
 
     @GET("/app/config/getValue")
-    Observable<BaseModel<ConfigModel>> getValue(@Query("key") String phone);
+    Call<BaseModel<ConfigModel>> getValue(@Query("key") String phone);
 }

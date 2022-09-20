@@ -3,6 +3,7 @@ package com.asvsdfer.new_master_code.ui.activity
 import android.os.Bundle
 import android.widget.Toast
 import com.asvsdfer.new_master_code.R
+import com.asvsdfer.new_master_code.util.StaticUtil
 import com.asvsdfer.new_master_code.widget.ClickTextView
 import com.asvsdfer.new_master_code.widget.CountDownTimerUtils
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -21,6 +22,8 @@ class LoginActivity : RxAppCompatActivity() {
         login_remind_tv.setText(createSpanTexts(), { position ->
             if (position === 1) {
                 Toast.makeText(this, "点击第一个", Toast.LENGTH_SHORT).show()
+
+                StaticUtil.startActivity(this@LoginActivity, UserAgreementActivity::class.java, null)
             } else {
                 Toast.makeText(this, "点击第二个", Toast.LENGTH_SHORT).show()
             }

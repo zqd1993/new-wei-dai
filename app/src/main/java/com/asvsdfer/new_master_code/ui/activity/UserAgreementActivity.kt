@@ -8,17 +8,15 @@ import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import com.asvsdfer.new_master_code.R
 import com.asvsdfer.new_master_code.api.NetSimple
-import com.asvsdfer.new_master_code.api.ObserverManager
 import com.asvsdfer.new_master_code.mode.BaseModel
 import com.asvsdfer.new_master_code.mode.ConfigModel
 import com.asvsdfer.new_master_code.util.StatusBarUtil
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.head_layout.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserAgreementActivity : RxAppCompatActivity() {
 
@@ -36,12 +34,12 @@ class UserAgreementActivity : RxAppCompatActivity() {
         setContentView(R.layout.activity_web_view)
         StatusBarUtil.setTransparent(this, false)
         back_image.setOnClickListener { finish() }
-        bundle = intent.extras
-        if (bundle!!.containsKey("tag")) tag = bundle!!.getInt("tag")
-        if (bundle!!.containsKey("url")) url = bundle!!.getString("url")
-        if (tag == 1) title_tv.text =
-            resources.getString(R.string.privacy_policy) else title_tv.text =
-            resources.getString(R.string.user_service_agreement)
+//        bundle = intent.extras
+//        if (bundle!!.containsKey("tag")) tag = bundle!!.getInt("tag")
+//        if (bundle!!.containsKey("url")) url = bundle!!.getString("url")
+//        if (tag == 1) title_tv.text =
+//            resources.getString(R.string.privacy_policy) else title_tv.text =
+//            resources.getString(R.string.user_service_agreement)
         webSettings = web_view.settings
         webSettings?.let {
             it.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK //设置缓存
@@ -49,7 +47,7 @@ class UserAgreementActivity : RxAppCompatActivity() {
             it.domStorageEnabled = true //设置适应Html5 重点是这个设置
             it.textZoom = 100
             web_view.webViewClient = WebViewClient()
-            url?.let { it1 -> web_view.loadUrl(it1) }
+            url?.let { it1 -> web_view.loadUrl("www.baidu.com") }
         }
     }
 
@@ -91,21 +89,20 @@ class UserAgreementActivity : RxAppCompatActivity() {
     }
 
     private fun getConfig() {
-        val observable: Observable<BaseModel<ConfigModel>> =
-            NetSimple.getRetrofitManager().apiService.getValue("VIDEOTAPE")
-        observable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .compose(bindToLifecycle())
-            .subscribe(object : ObserverManager<BaseModel<ConfigModel?>?>() {
-                override fun onSuccess(model: BaseModel<ConfigModel?>?) {
+        val telService = NetSimple.getRetrofitManager().apiService  //传入之前定义的接口
+
+        //Get请求并处理结果
+        telService.getValue("VIDEOTAPE").enqueue(object : Callback<BaseModel<ConfigModel>> {
+            override fun onFailure(call: Call<BaseModel<ConfigModel>>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+            override fun onResponse(call: Call<BaseModel<ConfigModel>>, response: Response<BaseModel<ConfigModel>>) {
+                val tel = response.body()
+                if (tel != null) {
 
                 }
-
-                override fun onFinish() {}
-                override fun onDisposable(disposable: Disposable?) {}
-                override fun onFail(throwable: Throwable?) {
-
-                }
-            })
+            }
+        })
     }
 }
