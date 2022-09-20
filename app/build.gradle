@@ -5,21 +5,21 @@ plugins {
 android {
     signingConfigs {
         config {
-            keyAlias "taoxinfenqi01"
-            keyPassword "taoxinfenqi01"
-            storeFile file("./taoxinfenqi01.keystore")
-            storePassword "taoxinfenqi01"
+            keyAlias "ufghrtnkhwphpiuh"
+            keyPassword "psd123456"
+            storeFile file("./ufghrtnkhwphpiuh.jks")
+            storePassword "psd123456"
         }
     }
     compileSdkVersion 31
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.yaman.yongqb"
+        applicationId "com.rricmmny.bbdoeoe"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 20220902
-        versionName "1.1.1"
+        versionCode 100
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
