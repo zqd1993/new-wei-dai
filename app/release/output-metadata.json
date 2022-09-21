@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.qwsdbsdvdsnd.dfmcvndfhdf",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 100,
+      "versionName": "1.0.0",
+      "outputFile": "fenqihuanjiekuan_v1.0.0_build_20220921160324.apk"
+    }
+  ]
+}

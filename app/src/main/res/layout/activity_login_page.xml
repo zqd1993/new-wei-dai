@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#B02C3B">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/fghretye" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
+        android:layout_marginBottom="80dp"
+        android:gravity="bottom"
         android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.lihang.ShadowLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                app:hl_cornerRadius="@dimen/dp_10"
-                app:hl_layoutBackground="#FEE4BF">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <com.lihang.ShadowLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    app:hl_cornerRadius="50dp"
+                    app:hl_layoutBackground="#27282E"
+                    app:hl_strokeColor="#CFA972"
+                    app:hl_strokeWith="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="60dp"
                         android:layout_marginEnd="20dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -45,7 +51,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/zhanghao" />
+                            android:src="@drawable/jjkfyu" />
 
                         <EditText
                             android:id="@+id/mobile_et"
@@ -64,19 +70,24 @@
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:background="@color/line_color" />
+                </com.lihang.ShadowLayout>
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    app:hl_cornerRadius="50dp"
+                    app:hl_layoutBackground="#27282E"
+                    app:hl_strokeColor="#CFA972"
+                    app:hl_strokeWith="1dp">
 
                     <LinearLayout
                         android:id="@+id/verification_ll"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="30dp"
                         android:layout_marginEnd="20dp"
                         android:orientation="horizontal"
                         android:padding="3dp">
@@ -87,13 +98,13 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
-                            android:src="@drawable/yanzhengma" />
+                            android:src="@drawable/awerfgh" />
 
                         <EditText
                             android:id="@+id/verification_et"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
+                            android:layout_marginStart="10dp"
                             android:layout_weight="1"
                             android:background="@null"
                             android:cursorVisible="true"
@@ -108,62 +119,51 @@
                         <TextView
                             android:id="@+id/get_verification_tv"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="15dp"
-                            android:background="@drawable/button_yuan_bg"
+                            android:layout_height="match_parent"
                             android:gravity="center"
+                            android:paddingStart="15dp"
+                            android:paddingTop="5dp"
                             android:paddingEnd="15dp"
+                            android:paddingBottom="5dp"
                             android:text="获取验证码"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="30dp"
-                        android:background="@color/line_color" />
+                </com.lihang.ShadowLayout>
 
-                </LinearLayout>
-
-            </com.lihang.ShadowLayout>
-
-            <com.lihang.ShadowLayout
-                android:id="@+id/head_sl"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                app:hl_cornerRadius="50dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher" />
-
-            </com.lihang.ShadowLayout>
+            </LinearLayout>
 
         </FrameLayout>
 
-        <View
+        <com.lihang.ShadowLayout
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
+            app:hl_startColor="#A7845A"
+            android:layout_marginTop="40dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/anniu1" />
+            app:hl_endColor="#A7845A"
+            app:hl_centerColor="#FEDD8F"
+            app:hl_cornerRadius="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_20"
+                android:textColor="@color/normal_color"
+                android:text="登录"
+                android:layout_gravity="center" />
+
+        </com.lihang.ShadowLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -173,7 +173,7 @@
                 android:layout_height="@dimen/dp_30"
                 android:button="@drawable/login_checkbox_bg" />
 
-            <com.asvsdfer.new_master_code.widget.ClickTextView
+            <com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.widget.ClickTextView
                 android:id="@+id/login_remind_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

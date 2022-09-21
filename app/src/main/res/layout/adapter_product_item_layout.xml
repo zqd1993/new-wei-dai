@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.lihang.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:hl_cornerRadius="10dp"
+        app:hl_layoutBackground="#27282E"
+        app:hl_strokeColor="#CFA972"
+        app:hl_strokeWith="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    app:hl_cornerRadius="10dp">
+
+                    <ImageView
+                        android:id="@+id/product_pic_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher" />
+
+                </com.lihang.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/product_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="乐借钱包" />
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:hl_startColor="#A7845A"
+                    android:layout_marginEnd="20dp"
+                    app:hl_endColor="#A7845A"
+                    app:hl_centerColor="#FEDD8F"
+                    app:hl_cornerRadius="50dp">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:gravity="center"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/normal_color"
+                        android:text="立即申请"
+                        android:layout_gravity="center" />
+
+                </com.lihang.ShadowLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#50FFCB6E"
+                        android:textSize="12sp"
+                        android:text="申请额度" />
+
+                    <TextView
+                        android:id="@+id/product_amount_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:text="300,000"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#50FFCB6E"
+                        android:textSize="12sp"
+                        android:text="周期" />
+
+                    <TextView
+                        android:id="@+id/zhouqi_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:text="3-36个月"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/people_number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="高额低息"
+                android:textSize="12sp"
+                android:textColor="#F0AC0A"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="低利息" />
+
+        </LinearLayout>
+
+    </com.lihang.ShadowLayout>
+
+    <View
+        android:id="@+id/parent_sl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
