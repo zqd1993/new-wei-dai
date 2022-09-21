@@ -82,7 +82,7 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="8dp"
                     android:textSize="@dimen/sp_12"
-                    android:text="闪电放款，无需任何资质证明"
+                    android:text="资料简单"
                     android:textColor="#EDBE86" />
 
             </com.lihang.ShadowLayout>
