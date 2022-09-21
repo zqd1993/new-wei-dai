@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bndtujs">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/rgreysdf"
+                    android:scaleType="fitXY" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F8F4EB"
+                    android:layout_margin="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginEnd="30dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <EditText
+                            android:id="@+id/mobile_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:cursorVisible="true"
+                            android:hint="请输入手机号"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="#EEC19E"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_16" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:background="#FC4C3E" />
+
+                    <LinearLayout
+                        android:id="@+id/verification_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <EditText
+                            android:id="@+id/verification_et"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:cursorVisible="true"
+                            android:hint="请输入验证码"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="#EEC19E"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/sp_16" />
+
+                        <TextView
+                            android:id="@+id/get_verification_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:paddingStart="15dp"
+                            android:background="@drawable/normal_button_bg"
+                            android:gravity="center"
+                            android:paddingEnd="15dp"
+                            android:text="获取验证码"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                     <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:background="#FC4C3E" />
+                    <TextView
+                        android:id="@+id/login_btn"
+                        android:layout_width="130dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_horizontal"
+                        android:text="登录"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:background="@drawable/text_yuan_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/remind_cb"
+                            android:layout_width="@dimen/dp_30"
+                            android:layout_height="@dimen/dp_30"
+                            android:button="@drawable/login_checkbox_bg" />
+
+                        <com.ashasnasgasnzxdfge.asmasjasllldfrety.yingjidrhfsdrutil.YingJiHDSdJdgfsClickTextView
+                            android:id="@+id/login_remind_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_999999"
+                            android:textSize="@dimen/sp_16" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <com.lihang.ShadowLayout
+                android:id="@+id/head_sl"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                app:hl_cornerRadius="50dp"
+                android:visibility="gone">
+
+            </com.lihang.ShadowLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/loading_layout_ying_ji_dh_jie_fuerty" />
+
+</FrameLayout>

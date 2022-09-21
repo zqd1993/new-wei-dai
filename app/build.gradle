@@ -5,9 +5,9 @@ plugins {
 android {
     signingConfigs {
         config {
-            keyAlias "caijiefhbdrntuydfgh"
+            keyAlias "yijingddirhfhdsnrt"
             keyPassword "psd123456"
-            storeFile file("./caijiefhbdrntuydfgh.jks")
+            storeFile file("./yijingddirhfhdsnrt.jks")
             storePassword "psd123456"
         }
     }
@@ -15,11 +15,11 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.zasashqwhds.msdjsdhfhsdn"
+        applicationId "com.ashasnasgasnzx.asmasjaslll"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 101
-        versionName "1.0.1"
+        versionCode 100
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,7 +39,7 @@ android {
     }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "suijiesuihuan_v${variant.versionName}_build_${releaseTime()}.apk"
+            outputFileName = "yijingjietiao_v${variant.versionName}_build_${releaseTime()}.apk"
         }
     }
 
