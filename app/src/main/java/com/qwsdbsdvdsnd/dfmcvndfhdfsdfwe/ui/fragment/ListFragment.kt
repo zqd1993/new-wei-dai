@@ -112,8 +112,8 @@ class ListFragment : BaseFragment(){
                     response: Response<BaseModel<EmptyModel>>
                 ) {
                     bundle = Bundle()
-                    bundle?.putString("title", mGoodsModel!!.productName)
-                    bundle?.putString("url", mGoodsModel!!.url)
+                    bundle?.putString("title", goodsModel!!.productName)
+                    bundle?.putString("url", goodsModel!!.url)
                     activity?.let { StaticUtil.startActivity(it, ProductDetailsActivity::class.java, bundle) }
                 }
             })

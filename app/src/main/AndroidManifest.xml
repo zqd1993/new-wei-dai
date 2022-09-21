@@ -21,7 +21,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:name="com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.MineApp">
         <activity android:name="com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.ui.activity.QiDongPageActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import com.github.gzuliyujiang.oaid.DeviceID
+import com.github.gzuliyujiang.oaid.DeviceIdentifier
+import com.github.gzuliyujiang.oaid.IGetter
 import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.MineApp
 import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.R
 import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.api.NetSimple
@@ -16,9 +19,6 @@ import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.util.StaticUtil
 import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.util.StatusBarUtil
 import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.widget.ClickTextView
 import com.qwsdbsdvdsnd.dfmcvndfhdfsdfwe.widget.CountDownTimerUtils
-import com.github.gzuliyujiang.oaid.DeviceID
-import com.github.gzuliyujiang.oaid.DeviceIdentifier
-import com.github.gzuliyujiang.oaid.IGetter
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login_page.*
 import kotlinx.android.synthetic.main.loading_layout.*
@@ -205,6 +205,8 @@ class LoginActivity : RxAppCompatActivity() {
         apiService.login(mobileStr, verificationStr, "", ip, oaidStr).enqueue(object : Callback<BaseModel<LoginModel>> {
             override fun onFailure(call: Call<BaseModel<LoginModel>>, t: Throwable) {
                 t.printStackTrace()
+                loading_fl.visibility = View.GONE
+                rotate_loading.stop()
                 Toast.makeText(this@LoginActivity, "登录失败", Toast.LENGTH_SHORT).show()
             }
 
@@ -212,6 +214,8 @@ class LoginActivity : RxAppCompatActivity() {
                 call: Call<BaseModel<LoginModel>>,
                 response: Response<BaseModel<LoginModel>>
             ) {
+                loading_fl.visibility = View.GONE
+                rotate_loading.stop()
                 val model = response.body() ?: return
                 val loginModel = model.data
                 if (loginModel != null) {
