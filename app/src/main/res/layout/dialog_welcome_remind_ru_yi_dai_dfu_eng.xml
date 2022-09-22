@@ -24,7 +24,7 @@
             android:textSize="@dimen/sp_16"
             tools:text="温馨提示" />
 
-        <com.ruyidaivhernrf.etdfharefg.ruyidaivhernrfutil.ClickRuYiDaiKidunTextView
+        <com.fdjerymglkfgh.erugjhaharefg.ruyidaivhernrfutil.ClickRuYiDaiKidunTextView
             android:id="@+id/content_tv"
             android:visibility="visible"
             android:layout_width="wrap_content"
