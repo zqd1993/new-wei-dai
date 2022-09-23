@@ -18,8 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DaGeJtiaoBaDdhjFferRetrofitManager {
 
-    public static final String ZCXY = "https://gnxys.pycxwl.cn/profile/oppodgjtb/zcxy.html";
-    public static final String YSXY = "https://gnxys.pycxwl.cn/profile/oppodgjtb/ysxy.html";
+    public static final String ZCXY = "https://xyssml.yiqian888.xyz/profile/oppodgjtb/zcxy.html";
+    public static final String YSXY = "https://xyssml.yiqian888.xyz/profile/oppodgjtb/ysxy.html";
     public static final String API_BASE_URL = "http://121.41.89.214:7744/";
 
     private volatile static DaGeJtiaoBaDdhjFferRetrofitManager daGeJtiaoBaDdhjFferRetrofitManager;
