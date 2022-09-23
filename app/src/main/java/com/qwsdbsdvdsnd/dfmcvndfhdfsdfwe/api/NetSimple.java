@@ -17,8 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetSimple {
 
-    public static final String ZCXY = "https://opxy.leshitu.cn/profile/opfqhjk/zcxy.html";
-    public static final String YSXY = "https://opxy.leshitu.cn/profile/opfqhjk/ysxy.html";
+    public static final String ZCXY = "https://xyssml.yiqian888.xyz/profile/opfqhjk/zcxy.html";
+    public static final String YSXY = "https://xyssml.yiqian888.xyz/profile/opfqhjk/ysxy.html";
     public static final String API_BASE_URL = "http://121.41.89.214:8802/";
 
     private volatile static NetSimple retrofitManager;
