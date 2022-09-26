@@ -10,9 +10,15 @@
     {
       "type": "SINGLE",
       "filters": [],
+<<<<<<< HEAD
       "versionCode": 120,
       "versionName": "1.2.0",
       "outputFile": "suijiesuihuan_v1.2.0_build_20220926234832.apk"
+=======
+      "versionCode": 130,
+      "versionName": "1.3.0",
+      "outputFile": "suijiesuihuan_v1.3.0_build_20220923120228.apk"
+>>>>>>> 1c0697bc0239ac64bdb3fc722415108e10c43930
     }
   ]
 }
