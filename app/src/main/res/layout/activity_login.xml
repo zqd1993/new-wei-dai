@@ -1,189 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#B02C3B">
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bvnrt" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
 
-            <com.lihang.ShadowLayout
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            app:hl_cornerRadius="10dp"
+            app:hl_layoutBackground="@color/white">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                app:hl_cornerRadius="@dimen/dp_10"
-                app:hl_layoutBackground="#FEE4BF">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="20dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="60dp"
-                        android:layout_marginEnd="20dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="3dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:src="@drawable/zhanghao" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <EditText
                             android:id="@+id/mobile_et"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="10dp"
+                            android:layout_height="50dp"
                             android:background="@null"
                             android:cursorVisible="true"
-                            android:hint="请输入手机号"
+                            android:hint="请输入电话号码"
                             android:inputType="number"
                             android:maxLength="11"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorHint="#EEC19E"
+                            android:textColor="@color/text_color"
+                            android:textColorHint="@color/color_999999"
                             android:textCursorDrawable="@null"
                             android:textSize="@dimen/sp_16" />
 
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:background="@color/line_color" />
-
-                    <LinearLayout
-                        android:id="@+id/verification_ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:orientation="horizontal"
-                        android:padding="3dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:src="@drawable/yanzhengma" />
-
-                        <EditText
-                            android:id="@+id/verification_et"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:cursorVisible="true"
-                            android:hint="请输入验证码"
-                            android:inputType="number"
-                            android:maxLength="6"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorHint="#EEC19E"
-                            android:textCursorDrawable="@null"
-                            android:textSize="@dimen/sp_16" />
-
-                        <TextView
-                            android:id="@+id/get_verification_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="15dp"
-                            android:background="@drawable/normal_button_bg"
-                            android:gravity="center"
-                            android:paddingEnd="15dp"
-                            android:text="获取验证码"
-                            android:textColor="@color/white" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@color/line_color" />
 
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="30dp"
-                        android:background="@color/line_color" />
 
                 </LinearLayout>
 
-            </com.lihang.ShadowLayout>
-
-            <com.lihang.ShadowLayout
-                android:id="@+id/head_sl"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                app:hl_cornerRadius="50dp">
-
-                <ImageView
+                <LinearLayout
+                    android:id="@+id/verification_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
 
-            </com.lihang.ShadowLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="20dp" />
 
-        </FrameLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-        <View
-            android:id="@+id/login_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/anniu1" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:padding="3dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/verification_et"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:cursorVisible="true"
+                                android:hint="请输入验证码"
+                                android:inputType="number"
+                                android:maxLength="6"
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/color_999999"
+                                android:textCursorDrawable="@null"
+                                android:textSize="@dimen/sp_16" />
 
-            <CheckBox
-                android:id="@+id/remind_cb"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
-                android:button="@drawable/login_checkbox_bg" />
+                            <TextView
+                                android:id="@+id/get_verification_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:paddingEnd="20dp"
+                                android:text="获取验证码"
+                                android:textColor="#999999" />
 
-            <com.fjsdkqwj.pfdioewjnsd.util.ClickTextView
-                android:id="@+id/login_remind_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_999999"
-                android:textSize="@dimen/sp_16" />
+                        </LinearLayout>
 
-        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@color/line_color" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/btn_bg"
+                    android:gravity="center"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:textStyle="bold"
+                    android:text="登  录"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_cb"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:button="@drawable/checkbox_bg" />
+
+                    <TextView
+                        android:id="@+id/login_remind_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
 
     </LinearLayout>
-
-    <include layout="@layout/loading_layout" />
 
 </FrameLayout>
