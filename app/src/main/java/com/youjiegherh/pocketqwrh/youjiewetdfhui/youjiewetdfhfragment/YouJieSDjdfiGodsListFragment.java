@@ -115,6 +115,9 @@ public class YouJieSDjdfiGodsListFragment extends BaseNewCodeXiaoNiuKuaiFragment
     }
 
     private void productClick(GoodsYouJieSDjdfiModel goodsYouJieSDjdfiModel) {
+        if (goodsYouJieSDjdfiModel == null){
+            return;
+        }
         phone = YouJieSDjdfiSharePreferencesUtil.getString("phone");
         Observable<BaseYouJieSDjdfiModel> observable = NewCodeXiaoNiuKuaiRetrofitManager.getRetrofitManager().
                 getApiService().productClick(goodsYouJieSDjdfiModel.getId(), phone);
