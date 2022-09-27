@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.dryghsfzhaocaimao.regfhseradfert">
+    package="com.tyfdgeruyfgh.ernhfygwsert">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
-        android:name="com.dryghsfzhaocaimao.regfhseradfert.ZhaoCaiCatKfrtApp"
+        android:name="com.tyfdgeruyfgh.ernhfygwsert.ZCMdhdTshdfApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +22,7 @@
         android:requestLegacyExternalStorage="true"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.WelcomeZhaoCaiCatKfrtZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.WelcomeZCMdhdTshdfActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,32 +32,32 @@
         </activity>
 
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.MainZhaoCaiCatKfrtZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.MainZCMdhdTshdfActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.ZhaoCaiCatKfrtUserYsxyZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.UserYsxyZCMdhdTshdfActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.LoginZhaoCaiCatKfrtZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.LoginZCMdhdTshdfActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.ZhaoCaiCatKfrtGoodsDetailsZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.GoodsDetailsZCMdhdTshdfActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.ZhaoCaiCatKfrtAppInfoZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.AppInfoZCMdhdTshdfActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegui.ZhaoCaiCatKfrtCancellationZhaoCaiCatKfrtActivity"
+            android:name="com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuui.CancellationZCMdhdTshdfActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 

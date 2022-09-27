@@ -22,11 +22,11 @@
 -obfuscationdictionary bt-proguard.txt
 -classobfuscationdictionary bt-proguard.txt
 -packageobfuscationdictionary bt-proguard.txt
-
+-keep class com.ertdfh.mgyityu.ui.** {*;}
 # Bean类不能混淆
--keep public class com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegmodel.**{*;}
+-keep public class com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyumodel.**{*;}
 
--keep public class com.dryghsfzhaocaimao.regfhseradfert.zhaocaimaowegutil.ZhaoCaiCatKfrtSharePreferencesUtil
+-keep public class com.tyfdgeruyfgh.ernhfygwsert.zcmytyhgutyuutil.ZCMdhdTshdfSharePreferencesUtil
 
 -keep class repeackage.com.uodis.opendevice.aidl.** { *; }
 -keep interface repeackage.com.uodis.opendevice.aidl.** { *; }
