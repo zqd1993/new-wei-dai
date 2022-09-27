@@ -132,7 +132,7 @@ public class MineDaGeJtiaoBaDdhjFferFragment extends BaseDaGeJtiaoBaDdhjFferFrag
         mineList.setHasFixedSize(true);
         mineList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mineList.setAdapter(daGeJtiaoBaDdhjFferMineItemAdapter);
-        daGeJtiaoBaDdhjFferMineItemAdapter1 = new DaGeJtiaoBaDdhjFferMineItemAdapter(R.layout.adapter_mine_list_layout_1_da_ge_jdf_yrjf, list);
+        daGeJtiaoBaDdhjFferMineItemAdapter1 = new DaGeJtiaoBaDdhjFferMineItemAdapter(R.layout.adapter_mine_list_layout_1_da_ge_jdf_yrjf, list1);
         daGeJtiaoBaDdhjFferMineItemAdapter1.setHasStableIds(true);
         daGeJtiaoBaDdhjFferMineItemAdapter1.setItemClickListener(position -> {
             switch (position) {
