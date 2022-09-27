@@ -7,9 +7,9 @@ plugins {
 android {
     signingConfigs {
         config {
-            keyAlias "meifenqiewrfsd"
+            keyAlias "jinzhudfent"
             keyPassword "psd123456"
-            storeFile file("./meifenqiewrfsd.jks")
+            storeFile file("./jinzhudfent.jks")
             storePassword "psd123456"
         }
     }
@@ -17,11 +17,11 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.fgrtuyrty.mdgjutyiyt"
+        applicationId "com.rtyhdfgh.nrtdfgh"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 100
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,7 +29,7 @@ android {
     androidJunkCode {
         variantConfig {
             release {//变体名称，如果没有设置productFlavors就是buildType名称，如果有设置productFlavors就是flavor+buildType，例如（freeRelease、proRelease）
-                packageBase = "com.master.code_ui"  //生成java类根包名
+                packageBase = "com.master.code.ui"  //生成java类根包名
                 packageCount = 30 //生成包数量
                 activityCountPerPackage = 3 //每个包下生成Activity类数量
                 excludeActivityJavaFile = false //是否排除生成Activity的Java文件,默认false(layout和写入AndroidManifest.xml还会执行)，主要用于处理类似神策全埋点编译过慢问题
@@ -47,12 +47,12 @@ android {
             minifyEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
         }
         debug {
             debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
         }
     }
     android.applicationVariants.all { variant ->
@@ -96,10 +96,7 @@ dependencies {
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
     implementation 'com.github.lihangleo2:ShadowLayout:3.2.4'
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
-    implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
     implementation 'pub.devrel:easypermissions:3.0.0'
-    implementation 'com.victor:lib:1.0.4'
-    implementation 'io.github.youth5201314:banner:2.2.2'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
