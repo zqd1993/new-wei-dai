@@ -134,7 +134,7 @@ public class LoginActivity extends RxAppCompatActivity {
         };
         if (text.length > 1) {
             spannableString.setSpan(clickableSpan, text[0].length(), text[0].length() + text[1].length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#DEAD27")), text[1].length(), text[2].length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#F56543")), text[1].length(), text[2].length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         }
         if (text.length > 1) {
             ClickableSpan clickableSpan1 = new ClickableSpan() {
@@ -149,7 +149,7 @@ public class LoginActivity extends RxAppCompatActivity {
             int startNum = spannableString.length() - text[2].length();
             int endNum = spannableString.length();
             spannableString.setSpan(clickableSpan1, startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#DEAD27")), startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#F56543")), startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         }
         loginRemindTv.setText(spannableString);
         loginRemindTv.setMovementMethod(LinkMovementMethod.getInstance());

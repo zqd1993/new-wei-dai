@@ -81,7 +81,7 @@ public class StartPageDialog extends Dialog {
             int startNum = spannableString.length() - text[4].length() - text[3].length() - text[2].length() - text[1].length();
             int endNum = spannableString.length() - text[4].length() - text[3].length() - text[2].length();
             spannableString.setSpan(clickableSpan, startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#DEAD27")), startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#F56543")), startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         }
         if (text.length > 4) {
             ClickableSpan clickableSpan1 = new ClickableSpan() {
@@ -95,7 +95,7 @@ public class StartPageDialog extends Dialog {
             int startNum = spannableString.length() - text[4].length() - text[3].length();
             int endNum = spannableString.length() - text[4].length();
             spannableString.setSpan(clickableSpan1, startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#DEAD27")), startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#F56543")), startNum, endNum, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         }
         contentTv.setText(spannableString);
         contentTv.setMovementMethod(LinkMovementMethod.getInstance());

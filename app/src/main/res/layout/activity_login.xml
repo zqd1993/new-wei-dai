@@ -9,13 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/bvnrt" />
+        android:src="@drawable/rtysfd" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginBottom="90dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/dialog_bg"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
@@ -34,8 +37,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="@drawable/edit_bg"
                         android:orientation="vertical">
 
@@ -43,20 +47,25 @@
                             android:id="@+id/mobile_et"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
                             android:background="@null"
                             android:cursorVisible="true"
                             android:hint="请输入电话号码"
                             android:inputType="number"
                             android:maxLength="11"
                             android:textColor="@color/text_color"
-                            android:textColorHint="#DDDDDD"
+                            android:textColorHint="#BCBCBC"
                             android:textCursorDrawable="@null"
                             android:textSize="@dimen/sp_16" />
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginEnd="17dp"
+                    android:background="#EBEBEB" />
 
                 <LinearLayout
                     android:id="@+id/verification_ll"
@@ -87,7 +96,6 @@
                                     android:id="@+id/verification_et"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_marginStart="15dp"
                                     android:layout_marginEnd="15dp"
                                     android:background="@null"
                                     android:cursorVisible="true"
@@ -95,7 +103,7 @@
                                     android:inputType="number"
                                     android:maxLength="6"
                                     android:textColor="@color/text_color"
-                                    android:textColorHint="#DDDDDD"
+                                    android:textColorHint="#BCBCBC"
                                     android:textCursorDrawable="@null"
                                     android:textSize="@dimen/sp_16" />
 
@@ -104,20 +112,29 @@
                             <TextView
                                 android:id="@+id/get_verification_tv"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:background="@drawable/btn_bg"
                                 android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:paddingTop="6dp"
                                 android:paddingEnd="20dp"
                                 android:paddingStart="20dp"
                                 android:text="获取验证码"
-                                android:textColor="#666666" />
+                                android:textColor="@color/colorPrimary" />
 
                         </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginEnd="17dp"
+                    android:background="#EBEBEB" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -150,13 +167,14 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
                     android:background="@drawable/btn_bg"
                     android:gravity="center"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     android:textStyle="bold"
                     android:text="登  录"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/sp_16" />
 
             </LinearLayout>
