@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.jinzhudfent.bbsdfwewfg",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 140,
+      "versionName": "1.4.0",
+      "outputFile": "suijiesuihuan_v1.4.0_build_20220929161234.apk"
+    }
+  ]
+}
