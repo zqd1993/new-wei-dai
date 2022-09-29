@@ -16,8 +16,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainApi {
-    public static final String ZCXY = "https://www.baidu.com";
-    public static final String YSXY = "https://www.baidu.com";
+    public static final String ZCXY = "https://xyssml.yiqian888.xyz/profile/opjzjq/zcxy.html";
+    public static final String YSXY = "https://xyssml.yiqian888.xyz/profile/opjzjq/ysxy.html";
     public static final String API_BASE_URL = "http://43.249.30.103:7751/";
 
     private volatile static MainApi retrofitManager;
