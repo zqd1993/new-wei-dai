@@ -78,6 +78,7 @@ public class SetFragment extends RxFragment {
         clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         mailStr = MyPreferences.getString("app_mail");
         phoneStr = MyPreferences.getString("phone");
+        phoneTv.setText(phoneStr);
         mList = new ArrayList<>();
         PersonalCenterEntity model = new PersonalCenterEntity(R.drawable.aerty, "关于我们");
         PersonalCenterEntity model1 = new PersonalCenterEntity(R.drawable.xvbrt, "注册协议");
