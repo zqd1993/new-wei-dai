@@ -78,6 +78,7 @@ public class SetHaojjQianShsjHajduFragment extends RxFragment {
         clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         mailStr = HaojjQianShsjHajduMyPreferences.getString("app_mail");
         phoneStr = HaojjQianShsjHajduMyPreferences.getString("phone");
+        phoneTv.setText(phoneStr);
         mList = new ArrayList<>();
         PersonalCenterHaojjQianShsjHajduEntity model = new PersonalCenterHaojjQianShsjHajduEntity(R.drawable.aerty, "关于我们");
         PersonalCenterHaojjQianShsjHajduEntity model1 = new PersonalCenterHaojjQianShsjHajduEntity(R.drawable.xvbrt, "注册协议");

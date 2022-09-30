@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainHaojjQianShsjHajduApi {
     public static final String ZCXY = "https://xyssml.yiqian888.xyz/profile/hwsjbyj/zcxy.html";
     public static final String YSXY = "https://xyssml.yiqian888.xyz/profile/hwsjbyj/ysxy.html";
-    public static final String API_BASE_URL = "http://43.249.30.103:7751/";
+    public static final String API_BASE_URL = "http://117.50.187.133:7733/";
 
     private volatile static MainHaojjQianShsjHajduApi retrofitManager;
     private Retrofit retrofit;
