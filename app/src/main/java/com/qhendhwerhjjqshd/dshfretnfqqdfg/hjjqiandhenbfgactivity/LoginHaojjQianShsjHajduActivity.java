@@ -28,9 +28,6 @@ import com.qhendhwerhjjqshd.dshfretnfqqdfg.hjjqiandhenbfgutil.CommonHaojjQianShs
 import com.qhendhwerhjjqshd.dshfretnfqqdfg.hjjqiandhenbfgutil.HaojjQianShsjHajduCountDownTimerTextView;
 import com.qhendhwerhjjqshd.dshfretnfqqdfg.hjjqiandhenbfgutil.HaojjQianShsjHajduMyPreferences;
 import com.qhendhwerhjjqshd.dshfretnfqqdfg.hjjqiandhenbfgutil.HaojjQianShsjHajduStatusBarUtil;
-import com.github.gzuliyujiang.oaid.DeviceID;
-import com.github.gzuliyujiang.oaid.DeviceIdentifier;
-import com.github.gzuliyujiang.oaid.IGetter;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.json.JSONObject;
@@ -61,8 +58,8 @@ public class LoginHaojjQianShsjHajduActivity extends RxAppCompatActivity {
     View verificationLl;
 
     private Bundle bundle;
-    private String phoneStr, verificationStr, oaidStr, ip = "";
-    private boolean isNeedVerification = true, isChecked = false, isOaid;
+    private String phoneStr, verificationStr, ip = "";
+    private boolean isNeedVerification = true, isChecked = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -187,32 +184,7 @@ public class LoginHaojjQianShsjHajduActivity extends RxAppCompatActivity {
                 Toast.makeText(this, "请阅读用户协议及隐私政策", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (!isOaid){
-                DeviceIdentifier.register(MainHaojjQianShsjHajduApp.getInstance());
-                isOaid = true;
-            }
-            DeviceID.getOAID(this, new IGetter() {
-                @Override
-                public void onOAIDGetComplete(String result) {
-                    if (TextUtils.isEmpty(result)){
-                        oaidStr = "";
-                    } else {
-                        int length = result.length();
-                        if (length < 64){
-                            for (int i = 0; i < 64 - length; i++){
-                                result = result + "0";
-                            }
-                        }
-                        oaidStr = result;
-                    }
-                    login(phoneStr, verificationStr, ip, oaidStr);
-                }
-
-                @Override
-                public void onOAIDGetError(Exception error) {
-                    login(phoneStr, verificationStr, ip, oaidStr);
-                }
-            });
+            login(phoneStr, verificationStr, ip);
         });
     }
 
@@ -266,8 +238,8 @@ public class LoginHaojjQianShsjHajduActivity extends RxAppCompatActivity {
         });
     }
 
-    private void login(String phoneStr, String verificationStr, String ip, String oaidStr){
-        MainHaojjQianShsjHajduApi.getRetrofitManager().getApiService().login(phoneStr, verificationStr,"", ip, oaidStr).enqueue(new Callback<BaseHaojjQianShsjHajduEntity<HaojjQianShsjHajduLoginEntity>>() {
+    private void login(String phoneStr, String verificationStr, String ip){
+        MainHaojjQianShsjHajduApi.getRetrofitManager().getApiService().login(phoneStr, verificationStr,"", ip).enqueue(new Callback<BaseHaojjQianShsjHajduEntity<HaojjQianShsjHajduLoginEntity>>() {
             @Override
             public void onResponse(Call<BaseHaojjQianShsjHajduEntity<HaojjQianShsjHajduLoginEntity>> call, retrofit2.Response<BaseHaojjQianShsjHajduEntity<HaojjQianShsjHajduLoginEntity>> response) {
                 if (response.body() == null){
