@@ -19,8 +19,8 @@ android {
         applicationId "com.dqlsdjd.fdhqwen"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 20220927
-        versionName "1.0.0"
+        versionCode 20221007
+        versionName "1.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
