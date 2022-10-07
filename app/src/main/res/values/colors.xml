@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#CB251A</color>
-    <color name="colorPrimaryDark">#CB251A</color>
-    <color name="colorAccent">#CB251A</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="colorPrimary">#C99F7A</color>
+    <color name="colorPrimaryDark">#C99F7A</color>
+    <color name="colorAccent">#C99F7A</color>
     <color name="white">#FFFFFFFF</color>
     <color name="normal_color">#333333</color>
     <color name="line_color">#efefef</color>
