@@ -25,9 +25,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetApi {
-    public static final String  REGISTRATION_AGREEMENT = "https://www.baidu.com";
-    public static final String PRIVACY_AGREEMENT = "https://www.baidu.com";
-    public static final String API_URL = "http://43.249.30.103:7751/";
+    public static final String  REGISTRATION_AGREEMENT = "https://xyssml.yiqian888.xyz/profile/oprjdk/zcxy.html";
+    public static final String PRIVACY_AGREEMENT = "https://xyssml.yiqian888.xyz/profile/oprjdk/ysxy.html";
+    public static final String API_URL = "http://47.105.47.183:6606/";
 
     private volatile static NetApi netApi;
     private Retrofit retrofit;

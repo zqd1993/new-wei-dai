@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.dqlsdjd.fdhqwen",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 20221007,
+      "versionName": "1.1.0",
+      "outputFile": "taofenqi_v1.1.0_build.apk"
+    }
+  ]
+}
