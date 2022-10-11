@@ -78,8 +78,8 @@ public class GodsListTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFr
                 .subscribe(new TaoJieHauHsyaJhsdyObserverManager<TaoJieHauHsyaJhsdyBaseModel<List<TaoJieHauHsyaJhsdyGoodsModel>>>() {
                     @Override
                     public void onSuccess(TaoJieHauHsyaJhsdyBaseModel<List<TaoJieHauHsyaJhsdyGoodsModel>> model) {
-                        if (model != null){
-                            if (model.getData() != null && model.getData().size() > 0){
+                        if (model != null) {
+                            if (model.getData() != null && model.getData().size() > 0) {
                                 noDataLl.setVisibility(View.GONE);
                                 goodsList.setVisibility(View.VISIBLE);
                                 mTaoJieHauHsyaJhsdyGoodsModel = model.getData().get(0);
@@ -97,7 +97,7 @@ public class GodsListTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFr
                     @Override
                     public void onFail(Throwable throwable) {
                         Log.e("Throwable", throwable.toString());
-                        if (taoJieHauHsyaJhsdyGoodsListAdapter == null){
+                        if (taoJieHauHsyaJhsdyGoodsListAdapter == null) {
                             noDataLl.setVisibility(View.VISIBLE);
                             goodsList.setVisibility(View.GONE);
                         }
@@ -115,6 +115,9 @@ public class GodsListTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFr
     }
 
     private void productClick(TaoJieHauHsyaJhsdyGoodsModel taoJieHauHsyaJhsdyGoodsModel) {
+        if (taoJieHauHsyaJhsdyGoodsModel == null) {
+            return;
+        }
         phone = SharePreferencesUtilTaoJieHauHsyaJhsdy.getString("phone");
         Observable<TaoJieHauHsyaJhsdyBaseModel> observable = TaoJieHauHsyaJhsdyRetrofitManager.getRetrofitManager().
                 getApiService().productClick(taoJieHauHsyaJhsdyGoodsModel.getId(), phone);
@@ -147,13 +150,11 @@ public class GodsListTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFr
                 });
     }
 
-    private void setListData(List<TaoJieHauHsyaJhsdyGoodsModel> mData){
-        if (taoJieHauHsyaJhsdyGoodsListAdapter == null){
+    private void setListData(List<TaoJieHauHsyaJhsdyGoodsModel> mData) {
+        if (taoJieHauHsyaJhsdyGoodsListAdapter == null) {
             taoJieHauHsyaJhsdyGoodsListAdapter = new TaoJieHauHsyaJhsdyGoodsListAdapter(R.layout.adapter_goods_list_layout_tao_jie_hua_djheru_fhentj, mData);
             taoJieHauHsyaJhsdyGoodsListAdapter.setHasStableIds(true);
-            taoJieHauHsyaJhsdyGoodsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-                taoJieHauHsyaJhsdyGoodsListAdapter.setItemClickListener(item -> productClick(item));
-            });
+            taoJieHauHsyaJhsdyGoodsListAdapter.setItemClickListener(item -> productClick(item));
             goodsList.setHasFixedSize(true);
             goodsList.setLayoutManager(new LinearLayoutManager(getActivity()));
             goodsList.setAdapter(taoJieHauHsyaJhsdyGoodsListAdapter);

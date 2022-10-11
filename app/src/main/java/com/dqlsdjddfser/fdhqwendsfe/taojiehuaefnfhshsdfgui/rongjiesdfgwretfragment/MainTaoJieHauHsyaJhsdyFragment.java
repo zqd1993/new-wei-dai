@@ -61,7 +61,7 @@ public class MainTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFragme
             getGoodsList();
         });
         moreTv.setOnClickListener(v -> {
-            ((MainTaoJieHauHsyaJhsdyActivity)getActivity()).changePage();
+            ((MainTaoJieHauHsyaJhsdyActivity) getActivity()).changePage();
         });
     }
 
@@ -84,8 +84,8 @@ public class MainTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFragme
                 .subscribe(new TaoJieHauHsyaJhsdyObserverManager<TaoJieHauHsyaJhsdyBaseModel<List<TaoJieHauHsyaJhsdyGoodsModel>>>() {
                     @Override
                     public void onSuccess(TaoJieHauHsyaJhsdyBaseModel<List<TaoJieHauHsyaJhsdyGoodsModel>> model) {
-                        if (model != null){
-                            if (model.getData() != null && model.getData().size() > 0){
+                        if (model != null) {
+                            if (model.getData() != null && model.getData().size() > 0) {
                                 noDataLl.setVisibility(View.GONE);
                                 goodsList.setVisibility(View.VISIBLE);
                                 mTaoJieHauHsyaJhsdyGoodsModel = model.getData().get(0);
@@ -103,7 +103,7 @@ public class MainTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFragme
                     @Override
                     public void onFail(Throwable throwable) {
                         Log.e("Throwable", throwable.toString());
-                        if (taoJieHauHsyaJhsdyGoodsListAdapter == null){
+                        if (taoJieHauHsyaJhsdyGoodsListAdapter == null) {
                             noDataLl.setVisibility(View.VISIBLE);
                             goodsList.setVisibility(View.GONE);
                         }
@@ -121,6 +121,9 @@ public class MainTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFragme
     }
 
     private void productClick(TaoJieHauHsyaJhsdyGoodsModel taoJieHauHsyaJhsdyGoodsModel) {
+        if (taoJieHauHsyaJhsdyGoodsModel == null) {
+            return;
+        }
         phone = SharePreferencesUtilTaoJieHauHsyaJhsdy.getString("phone");
         Observable<TaoJieHauHsyaJhsdyBaseModel> observable = TaoJieHauHsyaJhsdyRetrofitManager.getRetrofitManager().
                 getApiService().productClick(taoJieHauHsyaJhsdyGoodsModel.getId(), phone);
@@ -153,8 +156,8 @@ public class MainTaoJieHauHsyaJhsdyFragment extends BaseTaoJieHauHsyaJhsdyFragme
                 });
     }
 
-    private void setListData(List<TaoJieHauHsyaJhsdyGoodsModel> mData){
-        if (taoJieHauHsyaJhsdyGoodsListAdapter == null){
+    private void setListData(List<TaoJieHauHsyaJhsdyGoodsModel> mData) {
+        if (taoJieHauHsyaJhsdyGoodsListAdapter == null) {
             taoJieHauHsyaJhsdyGoodsListAdapter = new TaoJieHauHsyaJhsdyGoodsListAdapter(R.layout.adapter_goods_list_layout_tao_jie_hua_djheru_fhentj, mData);
             taoJieHauHsyaJhsdyGoodsListAdapter.setHasStableIds(true);
             taoJieHauHsyaJhsdyGoodsListAdapter.setItemClickListener(item -> productClick(item));
