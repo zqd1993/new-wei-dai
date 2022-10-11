@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.fjsdkqwj.pfdioewjnsd">
+    package="com.asvsdfer.new_master_code_kotlin">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -10,19 +9,20 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name="com.fjsdkqwj.pfdioewjnsd.App"
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.WelcomeActivity"
+            android:name=".ui.activity.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,32 +32,37 @@
         </activity>
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.MainActivity"
+            android:name=".ui.activity.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.UserYsxyActivity"
+            android:name=".ui.activity.WebViewActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.LoginActivity"
+            android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.GoodsDetailsActivity"
+            android:name=".ui.activity.GoodsInfoActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.AppInfoActivity"
+            android:name=".ui.activity.GoodsDetailsActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.fjsdkqwj.pfdioewjnsd.ui.CancellationActivity"
+            android:name=".ui.activity.AppInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.ZhuXiaoActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 

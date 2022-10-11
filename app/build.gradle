@@ -1,27 +1,48 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'android-junk-code'
 }
 
 android {
+
     signingConfigs {
         config {
-            keyAlias "meifenqiewrfsd"
+            keyAlias "dfgwetfg"
             keyPassword "psd123456"
-            storeFile file("./meifenqiewrfsd.jks")
+            storeFile file("./dfgwetfg.jks")
             storePassword "psd123456"
         }
     }
+
     compileSdkVersion 31
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.fjsdkqwj.pfdioewjnsd"
+        applicationId "com.asvsdfer.new_master_code_kotlin"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    androidJunkCode {
+        variantConfig {
+            release {//变体名称，如果没有设置productFlavors就是buildType名称，如果有设置productFlavors就是flavor+buildType，例如（freeRelease、proRelease）
+                packageBase = "com.ergdfwwwfg.nndfghert.ui"  //生成java类根包名
+                packageCount = 30 //生成包数量
+                activityCountPerPackage = 3 //每个包下生成Activity类数量
+                excludeActivityJavaFile = false //是否排除生成Activity的Java文件,默认false(layout和写入AndroidManifest.xml还会执行)，主要用于处理类似神策全埋点编译过慢问题
+                otherCountPerPackage = 50  //每个包下生成其它类的数量
+                methodCountPerClass = 20  //每个类下生成方法数量
+                resPrefix = "nndfghert_"  //生成的layout、drawable、string等资源名前缀
+                drawableCount = 300  //生成drawable资源数量
+                stringCount = 300  //生成string数量
+            }
+        }
     }
 
     buildTypes {
@@ -37,29 +58,26 @@ android {
             signingConfig signingConfigs.config
         }
     }
+
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "suijiesuihuan_v${variant.versionName}_build_${releaseTime()}.apk"
+            outputFileName = "fenqihuanjiekuan_v${variant.versionName}_build.apk"
         }
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
-
-//这里是groovy的代码了，定义了一个获取时间的方法，groovy是兼容java，它可以直接使用jdk里的方法
-def releaseTime() {
-    return new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("Asia/Shanghai"))
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -73,19 +91,20 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.4.2'                 // 网络请求必要依赖
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'      // rxjava2和retrofit2的适配器
 //    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
-    implementation 'com.github.lihangleo2:ShadowLayout:3.2.4'
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
     implementation 'pub.devrel:easypermissions:3.0.0'
-    implementation 'com.victor:lib:1.0.4'
-    implementation'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
-    implementation 'io.github.youth5201314:banner:2.2.2'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.4'

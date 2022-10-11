@@ -22,11 +22,11 @@
 -obfuscationdictionary bt-proguard.txt
 -classobfuscationdictionary bt-proguard.txt
 -packageobfuscationdictionary bt-proguard.txt
-
+-keep class com.ergdfwwwfg.nndfghert.ui.** {*;}
 # Bean类不能混淆
--keep public class com.fjsdkqwj.pfdioewjnsd.model.**{*;}
+-keep public class com.asvsdfer.new_master_code_kotlin.logic.model.**{*;}
 
--keep public class com.fjsdkqwj.pfdioewjnsd.util.SharePreferencesUtil
+-keep public class com.asvsdfer.new_master_code_kotlin.util.**{*;}
 
 -keep class repeackage.com.uodis.opendevice.aidl.** { *; }
 -keep interface repeackage.com.uodis.opendevice.aidl.** { *; }
