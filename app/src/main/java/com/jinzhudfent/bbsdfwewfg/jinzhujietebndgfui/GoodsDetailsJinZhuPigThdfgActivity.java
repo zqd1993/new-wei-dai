@@ -185,6 +185,14 @@ public class GoodsDetailsJinZhuPigThdfgActivity extends BaseJinZhuPigThdfgActivi
         }
     }
 
+    private String setFilePath() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
+            return this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/apk";
+        }
+        String packageName = getApplicationContext().getPackageName();
+        return filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + packageName;
+    }
+
     /**
      * 安装最新Apk
      */
@@ -218,7 +226,7 @@ public class GoodsDetailsJinZhuPigThdfgActivity extends BaseJinZhuPigThdfgActivi
         progressDialog.show();
         progressDialog.setCancelable(false);
         String apkName[] = url.split("/");
-        DownloadApkUtilJinZhuPigThdfg.get().download(url, Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/", apkName[apkName.length - 1], new DownloadApkUtilJinZhuPigThdfg.OnDownloadListener() {
+        DownloadApkUtilJinZhuPigThdfg.get().download(url, setFilePath(), apkName[apkName.length - 1], new DownloadApkUtilJinZhuPigThdfg.OnDownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
                 if (progressDialog != null && progressDialog.isShowing()) {
