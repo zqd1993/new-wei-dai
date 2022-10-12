@@ -209,6 +209,14 @@ public class GoodsDetailsZCMdhdTshdfActivity extends BaseZCMdhdTshdfActivity imp
         }
     }
 
+    private String setFilePath() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
+            return this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/apk";
+        }
+        String packageName = getApplicationContext().getPackageName();
+        return filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + packageName;
+    }
+
     public void downFile(String url) {
         ProgressDialog progressDialog = new ProgressDialog(GoodsDetailsZCMdhdTshdfActivity.this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -218,7 +226,7 @@ public class GoodsDetailsZCMdhdTshdfActivity extends BaseZCMdhdTshdfActivity imp
         progressDialog.show();
         progressDialog.setCancelable(false);
         String apkName[] = url.split("/");
-        ZCMdhdTshdfDownloadApkUtil.get().download(url, Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/", apkName[apkName.length - 1], new ZCMdhdTshdfDownloadApkUtil.OnDownloadListener() {
+        ZCMdhdTshdfDownloadApkUtil.get().download(url, setFilePath(), apkName[apkName.length - 1], new ZCMdhdTshdfDownloadApkUtil.OnDownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
                 if (progressDialog != null && progressDialog.isShowing()) {
