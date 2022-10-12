@@ -151,6 +151,16 @@ class GoodsInfoActivity : RxAppCompatActivity(), PermissionCallbacks {
         }
     }
 
+    private fun setFilePath(): String? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
+            return getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.absolutePath + "/apk"
+        }
+        val packageName = applicationContext.packageName
+        return Environment.getExternalStorageDirectory().absolutePath + "/" + packageName.also {
+            filePath = it
+        }
+    }
+
     fun downFile(url: String) {
         val progressDialog = ProgressDialog(this@GoodsInfoActivity)
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
@@ -161,7 +171,7 @@ class GoodsInfoActivity : RxAppCompatActivity(), PermissionCallbacks {
         progressDialog.setCancelable(false)
         val apkName = url.split("/").toTypedArray()
         DownloadUtil.get().download(url,
-            Environment.getExternalStorageDirectory().absolutePath + "/Download/",
+            setFilePath(),
             apkName[apkName.size - 1],
             object : OnDownloadListener {
                 override fun onDownloadSuccess(file: File) {
