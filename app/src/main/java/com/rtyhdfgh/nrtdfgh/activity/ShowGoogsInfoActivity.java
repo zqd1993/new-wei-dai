@@ -186,6 +186,14 @@ public class ShowGoogsInfoActivity extends RxAppCompatActivity implements EasyPe
         }
     }
 
+    private String setFilePath() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
+            return this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/apk";
+        }
+        String packageName = getApplicationContext().getPackageName();
+        return filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + packageName;
+    }
+
     public void downFile(String url) {
         ProgressDialog progressDialog = new ProgressDialog(ShowGoogsInfoActivity.this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -195,7 +203,7 @@ public class ShowGoogsInfoActivity extends RxAppCompatActivity implements EasyPe
         progressDialog.show();
         progressDialog.setCancelable(false);
         String apkName[] = url.split("/");
-        DownloadUtil.get().downloadApk(url, Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/", apkName[apkName.length - 1], new DownloadUtil.OnDownloadListener() {
+        DownloadUtil.get().downloadApk(url, setFilePath(), apkName[apkName.length - 1], new DownloadUtil.OnDownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
                 if (progressDialog != null && progressDialog.isShowing()) {
