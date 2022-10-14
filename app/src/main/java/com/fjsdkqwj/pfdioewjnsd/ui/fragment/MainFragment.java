@@ -115,6 +115,9 @@ public class MainFragment extends BaseFragment {
     }
 
     private void productClick(GoodsModel goodsModel) {
+        if (goodsModel == null){
+            return;
+        }
         phone = SharePreferencesUtil.getString("phone");
         Observable<BaseModel> observable = RetrofitManager.getRetrofitManager().
                 getApiService().productClick(goodsModel.getId(), phone);
