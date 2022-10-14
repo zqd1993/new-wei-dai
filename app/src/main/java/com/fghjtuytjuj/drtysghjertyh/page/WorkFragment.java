@@ -150,6 +150,9 @@ public class WorkFragment extends RxFragment {
 
 
     private void productClick(ProductBean productBean){
+        if (productBean == null){
+            return;
+        }
         phone = SharePreferencesUtil.getString("phone");
         NetApi.getNetApi().getNetInterface().productClick(productBean.getId(), phone).enqueue(new Callback<BaseModel>() {
             @Override
