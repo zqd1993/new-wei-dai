@@ -188,8 +188,8 @@ class LoginActivity : AppCompatActivity() {
                 "发送成功".showToast(this@LoginActivity)
                 val mCountDownTimerUtils = CountDownTimerUtils(get_verification_tv, 60000, 1000)
                 mCountDownTimerUtils.start()
-            } else {
-                "验证码发送失败".showToast(MyApp.context)
+            } else{
+                "验证码发送失败".showToast(this@LoginActivity)
             }
         }
         viewModel.getConfig.observe(this, { result ->

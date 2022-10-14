@@ -57,9 +57,10 @@ object Repository {
         val result = try {
             val responseModel = BaseNetWork.sendVerifyCode(phone)
             if (responseModel.code == 200) {
-                val places = responseModel.data
-                Result.success(places)
+                val emptyModel = EmptyModel(responseModel.code)
+                Result.success(emptyModel)
             } else {
+                "验证码发送失败".showToast(MyApp.context)
                 Result.failure(RuntimeException("response status is${responseModel.msg}"))
             }
         } catch (e: Exception) {
