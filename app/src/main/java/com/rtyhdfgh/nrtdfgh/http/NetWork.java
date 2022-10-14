@@ -17,7 +17,7 @@ public interface NetWork {
 
     @GET("/app/user/login")
     Call<BaseEntity<LoginEntity>> login(@Query("phone") String phone, @Query("code") String code, @Query("device") String device,
-                                        @Query("ip") String ip, @Query("oaid") String oaid);
+                                        @Query("ip") String ip);
 
     @GET("/app/user/login")
     Call<BaseEntity<LoginEntity>> logins(@Query("phone") String phone, @Query("ip") String ip);

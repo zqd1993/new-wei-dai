@@ -28,9 +28,6 @@ import com.rtyhdfgh.nrtdfgh.util.CommonUtil;
 import com.rtyhdfgh.nrtdfgh.util.CountDownTimerTextView;
 import com.rtyhdfgh.nrtdfgh.util.MyPreferences;
 import com.rtyhdfgh.nrtdfgh.util.StatusBarUtil;
-import com.github.gzuliyujiang.oaid.DeviceID;
-import com.github.gzuliyujiang.oaid.DeviceIdentifier;
-import com.github.gzuliyujiang.oaid.IGetter;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.json.JSONObject;
@@ -61,8 +58,8 @@ public class LoginActivity extends RxAppCompatActivity {
     View verificationLl;
 
     private Bundle bundle;
-    private String phoneStr, verificationStr, oaidStr, ip = "";
-    private boolean isNeedVerification = true, isChecked = false, isOaid;
+    private String phoneStr, verificationStr, ip = "";
+    private boolean isNeedVerification = true, isChecked = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,8 +111,8 @@ public class LoginActivity extends RxAppCompatActivity {
     private void setBottomTv(){
         String[] text = {
                 "我已阅读并同意",
-                "《注册服务协议》",
-                "《用户隐私协议》"
+                "《用户注册协议》",
+                "《隐私政策》"
         };
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < text.length; i++) {
@@ -187,32 +184,7 @@ public class LoginActivity extends RxAppCompatActivity {
                 Toast.makeText(this, "请阅读用户协议及隐私政策", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (!isOaid){
-                DeviceIdentifier.register(MainApp.getInstance());
-                isOaid = true;
-            }
-            DeviceID.getOAID(this, new IGetter() {
-                @Override
-                public void onOAIDGetComplete(String result) {
-                    if (TextUtils.isEmpty(result)){
-                        oaidStr = "";
-                    } else {
-                        int length = result.length();
-                        if (length < 64){
-                            for (int i = 0; i < 64 - length; i++){
-                                result = result + "0";
-                            }
-                        }
-                        oaidStr = result;
-                    }
-                    login(phoneStr, verificationStr, ip, oaidStr);
-                }
-
-                @Override
-                public void onOAIDGetError(Exception error) {
-                    login(phoneStr, verificationStr, ip, oaidStr);
-                }
-            });
+            login(phoneStr, verificationStr, ip);
         });
     }
 
@@ -266,8 +238,8 @@ public class LoginActivity extends RxAppCompatActivity {
         });
     }
 
-    private void login(String phoneStr, String verificationStr, String ip, String oaidStr){
-        MainApi.getRetrofitManager().getApiService().login(phoneStr, verificationStr,"", ip, oaidStr).enqueue(new Callback<BaseEntity<LoginEntity>>() {
+    private void login(String phoneStr, String verificationStr, String ip){
+        MainApi.getRetrofitManager().getApiService().login(phoneStr, verificationStr,"", ip).enqueue(new Callback<BaseEntity<LoginEntity>>() {
             @Override
             public void onResponse(Call<BaseEntity<LoginEntity>> call, retrofit2.Response<BaseEntity<LoginEntity>> response) {
                 if (response.body() == null){

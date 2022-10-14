@@ -83,15 +83,13 @@ public class SetFragment extends RxFragment {
         PersonalCenterEntity model = new PersonalCenterEntity(R.drawable.aerty, "关于我们");
         PersonalCenterEntity model1 = new PersonalCenterEntity(R.drawable.xvbrt, "注册协议");
         PersonalCenterEntity model2 = new PersonalCenterEntity(R.drawable.urtyj, "隐私协议");
-        PersonalCenterEntity model3 = new PersonalCenterEntity(R.drawable.etyjsd, "投诉邮箱");
-        PersonalCenterEntity model4 = new PersonalCenterEntity(R.drawable.weery, "个性化推送");
+        PersonalCenterEntity model3 = new PersonalCenterEntity(R.drawable.etyjsd, "联系客服");
         PersonalCenterEntity model5 = new PersonalCenterEntity(R.drawable.szbs, "注销账号");
         PersonalCenterEntity model6 = new PersonalCenterEntity(R.drawable.drtuf, "退出登录");
         mList.add(model);
         mList.add(model1);
         mList.add(model2);
         mList.add(model3);
-        mList.add(model4);
         mList.add(model5);
         mList.add(model6);
         setItemAdapter = new SetItemAdapter(getActivity(), mList);
@@ -119,27 +117,9 @@ public class SetFragment extends RxFragment {
                         getConfigValue();
                         break;
                     case 4:
-                        generalDialog = new GeneralDialog(getActivity(), "温馨提示", "关闭或开启推送");
-                        generalDialog.setBtnClickListener(new GeneralDialog.BtnClickListener() {
-                            @Override
-                            public void leftClicked() {
-                                Toast.makeText(getActivity(), "开启成功", Toast.LENGTH_SHORT).show();
-                                generalDialog.dismiss();
-                            }
-
-                            @Override
-                            public void rightClicked() {
-                                Toast.makeText(getActivity(), "关闭成功", Toast.LENGTH_SHORT).show();
-                                generalDialog.dismiss();
-                            }
-                        });
-                        generalDialog.show();
-                        generalDialog.setBtnStr("开启", "关闭");
-                        break;
-                    case 5:
                         CommonUtil.startActivity(getActivity(), ZhuXiaoZhangHaoActivity.class, null);
                         break;
-                    case 6:
+                    case 5:
                         generalDialog = new GeneralDialog(getActivity(), "温馨提示", "确定退出当前登录");
                         generalDialog.setBtnClickListener(new GeneralDialog.BtnClickListener() {
                             @Override
