@@ -79,7 +79,7 @@ public class HomePageFragment extends RxFragment {
         if (arguments != null) {
             type = arguments.getInt("type");
         }
-        if (type == 2){
+        if (type == 2) {
             tishiFl.setVisibility(View.GONE);
         } else {
             tishiFl.setVisibility(View.VISIBLE);
@@ -102,13 +102,13 @@ public class HomePageFragment extends RxFragment {
         MainApi.getRetrofitManager().getApiService().getGoodsList(mobileType, phone).enqueue(new Callback<BaseEntity<List<GoodsEntity>>>() {
             @Override
             public void onResponse(Call<BaseEntity<List<GoodsEntity>>> call, retrofit2.Response<BaseEntity<List<GoodsEntity>>> response) {
-                if (response.body() == null){
+                if (response.body() == null) {
                     noDataLl.setVisibility(View.VISIBLE);
                     goodsList.setVisibility(View.GONE);
                     return;
                 }
                 List<GoodsEntity> entity = response.body().getData();
-                if (entity != null && entity.size() > 0){
+                if (entity != null && entity.size() > 0) {
                     noDataLl.setVisibility(View.GONE);
                     goodsList.setVisibility(View.VISIBLE);
                     goodsEntity = entity.get(0);
@@ -136,7 +136,10 @@ public class HomePageFragment extends RxFragment {
         });
     }
 
-    private void productClick(GoodsEntity goodsEntity){
+    private void productClick(GoodsEntity goodsEntity) {
+        if (goodsEntity == null) {
+            return;
+        }
         phone = MyPreferences.getString("phone");
         MainApi.getRetrofitManager().getApiService().productClick(goodsEntity.getId(), phone).enqueue(new Callback<BaseEntity>() {
             @Override
