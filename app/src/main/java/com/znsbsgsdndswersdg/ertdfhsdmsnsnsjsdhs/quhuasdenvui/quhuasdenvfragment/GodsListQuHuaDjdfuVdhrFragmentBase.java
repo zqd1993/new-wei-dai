@@ -78,8 +78,8 @@ public class GodsListQuHuaDjdfuVdhrFragmentBase extends BaseQuHuaDjdfuVdhrFragme
                 .subscribe(new BaseQuHuaDjdfuVdhrObserverManager<BaseQuHuaDjdfuVdhrModel<List<GoodsBaseQuHuaDjdfuVdhrModel>>>() {
                     @Override
                     public void onSuccess(BaseQuHuaDjdfuVdhrModel<List<GoodsBaseQuHuaDjdfuVdhrModel>> model) {
-                        if (model != null){
-                            if (model.getData() != null && model.getData().size() > 0){
+                        if (model != null) {
+                            if (model.getData() != null && model.getData().size() > 0) {
                                 noDataLl.setVisibility(View.GONE);
                                 goodsList.setVisibility(View.VISIBLE);
                                 mGoodsBaseQuHuaDjdfuVdhrModel = model.getData().get(0);
@@ -97,7 +97,7 @@ public class GodsListQuHuaDjdfuVdhrFragmentBase extends BaseQuHuaDjdfuVdhrFragme
                     @Override
                     public void onFail(Throwable throwable) {
                         Log.e("Throwable", throwable.toString());
-                        if (goodsListBaseQuHuaDjdfuVdhrAdapter == null){
+                        if (goodsListBaseQuHuaDjdfuVdhrAdapter == null) {
                             noDataLl.setVisibility(View.VISIBLE);
                             goodsList.setVisibility(View.GONE);
                         }
@@ -115,6 +115,9 @@ public class GodsListQuHuaDjdfuVdhrFragmentBase extends BaseQuHuaDjdfuVdhrFragme
     }
 
     private void productClick(GoodsBaseQuHuaDjdfuVdhrModel goodsBaseQuHuaDjdfuVdhrModel) {
+        if (goodsBaseQuHuaDjdfuVdhrModel == null) {
+            return;
+        }
         phone = BaseQuHuaDjdfuVdhrSharePreferencesUtil.getString("phone");
         Observable<BaseQuHuaDjdfuVdhrModel> observable = BaseQuHuaDjdfuVdhrRetrofitManager.getRetrofitManager().
                 getApiService().productClick(goodsBaseQuHuaDjdfuVdhrModel.getId(), phone);
@@ -147,8 +150,8 @@ public class GodsListQuHuaDjdfuVdhrFragmentBase extends BaseQuHuaDjdfuVdhrFragme
                 });
     }
 
-    private void setListData(List<GoodsBaseQuHuaDjdfuVdhrModel> mData){
-        if (goodsListBaseQuHuaDjdfuVdhrAdapter == null){
+    private void setListData(List<GoodsBaseQuHuaDjdfuVdhrModel> mData) {
+        if (goodsListBaseQuHuaDjdfuVdhrAdapter == null) {
             goodsListBaseQuHuaDjdfuVdhrAdapter = new GoodsListBaseQuHuaDjdfuVdhrAdapter(R.layout.adapter_goods_list_layout_qu_hua_hua_erf_engh, mData);
             goodsListBaseQuHuaDjdfuVdhrAdapter.setHasStableIds(true);
             goodsListBaseQuHuaDjdfuVdhrAdapter.setItemClickListener(item -> productClick(item));
